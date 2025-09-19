@@ -10,10 +10,10 @@ export function useCollaboration() {
   const [meetings, setMeetings] = useState<MeetingSchedule[]>([])
 
   useEffect(() => {
-    const savedGroups = localStorage.getItem("studysync-study-groups")
-    const savedProjects = localStorage.getItem("studysync-projects")
-    const savedMessages = localStorage.getItem("studysync-messages")
-    const savedMeetings = localStorage.getItem("studysync-meetings")
+    const savedGroups = localStorage.getItem("prodigyspace-study-groups")
+    const savedProjects = localStorage.getItem("prodigyspace-projects")
+    const savedMessages = localStorage.getItem("prodigyspace-messages")
+    const savedMeetings = localStorage.getItem("prodigyspace-meetings")
 
     if (savedGroups) {
       setStudyGroups(
@@ -74,22 +74,22 @@ export function useCollaboration() {
 
   const saveGroups = (newGroups: StudyGroup[]) => {
     setStudyGroups(newGroups)
-    localStorage.setItem("studysync-study-groups", JSON.stringify(newGroups))
+    localStorage.setItem("prodigyspace-study-groups", JSON.stringify(newGroups))
   }
 
   const saveProjects = (newProjects: Project[]) => {
     setProjects(newProjects)
-    localStorage.setItem("studysync-projects", JSON.stringify(newProjects))
+    localStorage.setItem("prodigyspace-projects", JSON.stringify(newProjects))
   }
 
   const saveMessages = (newMessages: ChatMessage[]) => {
     setMessages(newMessages)
-    localStorage.setItem("studysync-messages", JSON.stringify(newMessages))
+    localStorage.setItem("prodigyspace-messages", JSON.stringify(newMessages))
   }
 
   const saveMeetings = (newMeetings: MeetingSchedule[]) => {
     setMeetings(newMeetings)
-    localStorage.setItem("studysync-meetings", JSON.stringify(newMeetings))
+    localStorage.setItem("prodigyspace-meetings", JSON.stringify(newMeetings))
   }
 
   const createStudyGroup = (groupData: Omit<StudyGroup, "id" | "createdAt" | "members">) => {

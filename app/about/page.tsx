@@ -102,7 +102,7 @@ export default function AboutPage() {
         {/* Features Overview */}
         <div className="mx-auto max-w-4xl">
           <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-            Why Choose StudySync?
+            Why Choose prodigyspace?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">

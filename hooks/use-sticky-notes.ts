@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react"
 import { storage } from "@/lib/storage"
 import type { StickyNote, NoteColor, NotesStats } from "@/types/note"
 
-const NOTES_KEY = "studysync_sticky_notes"
+const NOTES_KEY = "prodigyspace_sticky_notes"
 
 export function useStickyNotes() {
   const [notes, setNotes] = useState<StickyNote[]>([])

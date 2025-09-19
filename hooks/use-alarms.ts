@@ -5,8 +5,8 @@ import { storage } from "@/lib/storage"
 import type { Alarm, AlarmDay, Reminder } from "@/types/alarm"
 import { useNotifications } from "./use-notifications"
 
-const ALARMS_KEY = "studysync_alarms"
-const REMINDERS_KEY = "studysync_reminders"
+const ALARMS_KEY = "prodigyspace_alarms"
+const REMINDERS_KEY = "prodigyspace_reminders"
 
 export function useAlarms() {
   const [alarms, setAlarms] = useState<Alarm[]>([])

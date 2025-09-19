@@ -25,7 +25,7 @@ export function Header() {
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
             <GraduationCap className="h-5 w-5 text-primary-foreground" />
           </div>
-          <span className="text-xl font-bold">StudySync</span>
+          <span className="text-xl font-bold">prodigyspace</span>
         </Link>
 
         {/* Desktop Navigation */}

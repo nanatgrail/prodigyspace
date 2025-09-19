@@ -10,10 +10,10 @@ export function useTasks() {
   const [assignments, setAssignments] = useState<Assignment[]>([])
 
   useEffect(() => {
-    const savedTasks = localStorage.getItem("studysync-tasks")
-    const savedSessions = localStorage.getItem("studysync-study-sessions")
-    const savedPlans = localStorage.getItem("studysync-study-plans")
-    const savedAssignments = localStorage.getItem("studysync-assignments")
+    const savedTasks = localStorage.getItem("prodigyspace-tasks")
+    const savedSessions = localStorage.getItem("prodigyspace-study-sessions")
+    const savedPlans = localStorage.getItem("prodigyspace-study-plans")
+    const savedAssignments = localStorage.getItem("prodigyspace-assignments")
 
     if (savedTasks) {
       setTasks(
@@ -68,22 +68,22 @@ export function useTasks() {
 
   const saveTasks = (newTasks: Task[]) => {
     setTasks(newTasks)
-    localStorage.setItem("studysync-tasks", JSON.stringify(newTasks))
+    localStorage.setItem("prodigyspace-tasks", JSON.stringify(newTasks))
   }
 
   const saveStudySessions = (newSessions: StudySession[]) => {
     setStudySessions(newSessions)
-    localStorage.setItem("studysync-study-sessions", JSON.stringify(newSessions))
+    localStorage.setItem("prodigyspace-study-sessions", JSON.stringify(newSessions))
   }
 
   const saveStudyPlans = (newPlans: StudyPlan[]) => {
     setStudyPlans(newPlans)
-    localStorage.setItem("studysync-study-plans", JSON.stringify(newPlans))
+    localStorage.setItem("prodigyspace-study-plans", JSON.stringify(newPlans))
   }
 
   const saveAssignments = (newAssignments: Assignment[]) => {
     setAssignments(newAssignments)
-    localStorage.setItem("studysync-assignments", JSON.stringify(newAssignments))
+    localStorage.setItem("prodigyspace-assignments", JSON.stringify(newAssignments))
   }
 
   const addTask = (taskData: Omit<Task, "id" | "createdAt" | "updatedAt" | "subtasks" | "reminders">) => {

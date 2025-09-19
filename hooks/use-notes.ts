@@ -8,8 +8,8 @@ export function useNotes() {
   const [scannedDocs, setScannedDocs] = useState<ScanDocument[]>([])
 
   useEffect(() => {
-    const savedNotes = localStorage.getItem("studysync-notes")
-    const savedDocs = localStorage.getItem("studysync-scanned-docs")
+    const savedNotes = localStorage.getItem("prodigyspace-notes")
+    const savedDocs = localStorage.getItem("prodigyspace-scanned-docs")
 
     if (savedNotes) {
       setNotes(
@@ -33,12 +33,12 @@ export function useNotes() {
 
   const saveNotes = (newNotes: Note[]) => {
     setNotes(newNotes)
-    localStorage.setItem("studysync-notes", JSON.stringify(newNotes))
+    localStorage.setItem("prodigyspace-notes", JSON.stringify(newNotes))
   }
 
   const saveDocs = (newDocs: ScanDocument[]) => {
     setScannedDocs(newDocs)
-    localStorage.setItem("studysync-scanned-docs", JSON.stringify(newDocs))
+    localStorage.setItem("prodigyspace-scanned-docs", JSON.stringify(newDocs))
   }
 
   const addNote = (noteData: Omit<Note, "id" | "createdAt" | "updatedAt">) => {

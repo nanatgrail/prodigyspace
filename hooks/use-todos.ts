@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react"
 import { storage } from "@/lib/storage"
 import type { Todo, TodoCategory, TodoPriority, TodoStats } from "@/types/todo"
 
-const TODOS_KEY = "studysync_todos"
+const TODOS_KEY = "prodigyspace_todos"
 
 export function useTodos() {
   const [todos, setTodos] = useState<Todo[]>([])

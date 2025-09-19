@@ -12,7 +12,7 @@ export function Footer() {
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
                 <GraduationCap className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="text-lg font-bold">StudySync</span>
+              <span className="text-lg font-bold">prodigyspace</span>
             </div>
             <p className="text-sm text-muted-foreground">Your all-in-one productivity companion for student life.</p>
           </div>
@@ -65,15 +65,15 @@ export function Footer() {
           <div className="space-y-3">
             <h3 className="text-sm font-semibold">Connect</h3>
             <div className="flex space-x-3">
-              <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="https://github.com/1046prt/" className="text-muted-foreground hover:text-foreground transition-colors">
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="https://x.com/1046prt/" className="text-muted-foreground hover:text-foreground transition-colors">
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="mailto:1046prt@gmail.com" className="text-muted-foreground hover:text-foreground transition-colors">
                 <Mail className="h-5 w-5" />
                 <span className="sr-only">Email</span>
               </Link>
@@ -82,7 +82,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 StudySync. All rights reserved. Built for students, by students.</p>
+          <p>&copy; 2025 prodigyspace. All rights reserved.</p>
         </div>
       </div>
     </footer>

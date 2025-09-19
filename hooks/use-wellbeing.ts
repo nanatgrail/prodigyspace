@@ -10,10 +10,10 @@ export function useWellbeing() {
   const [wellbeingGoals, setWellbeingGoals] = useState<WellbeingGoal[]>([])
 
   useEffect(() => {
-    const savedMoods = localStorage.getItem("studysync-mood-entries")
-    const savedMeditations = localStorage.getItem("studysync-meditations")
-    const savedFocus = localStorage.getItem("studysync-focus-sessions")
-    const savedGoals = localStorage.getItem("studysync-wellbeing-goals")
+    const savedMoods = localStorage.getItem("prodigyspace-mood-entries")
+    const savedMeditations = localStorage.getItem("prodigyspace-meditations")
+    const savedFocus = localStorage.getItem("prodigyspace-focus-sessions")
+    const savedGoals = localStorage.getItem("prodigyspace-wellbeing-goals")
 
     if (savedMoods) {
       setMoodEntries(
@@ -56,22 +56,22 @@ export function useWellbeing() {
 
   const saveMoodEntries = (entries: MoodEntry[]) => {
     setMoodEntries(entries)
-    localStorage.setItem("studysync-mood-entries", JSON.stringify(entries))
+    localStorage.setItem("prodigyspace-mood-entries", JSON.stringify(entries))
   }
 
   const saveMeditationSessions = (sessions: MeditationSession[]) => {
     setMeditationSessions(sessions)
-    localStorage.setItem("studysync-meditations", JSON.stringify(sessions))
+    localStorage.setItem("prodigyspace-meditations", JSON.stringify(sessions))
   }
 
   const saveFocusSessions = (sessions: FocusSession[]) => {
     setFocusSessions(sessions)
-    localStorage.setItem("studysync-focus-sessions", JSON.stringify(sessions))
+    localStorage.setItem("prodigyspace-focus-sessions", JSON.stringify(sessions))
   }
 
   const saveWellbeingGoals = (goals: WellbeingGoal[]) => {
     setWellbeingGoals(goals)
-    localStorage.setItem("studysync-wellbeing-goals", JSON.stringify(goals))
+    localStorage.setItem("prodigyspace-wellbeing-goals", JSON.stringify(goals))
   }
 
   const addMoodEntry = (entryData: Omit<MoodEntry, "id">) => {

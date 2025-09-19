@@ -1,4 +1,4 @@
-# ProdigySpace - Student Productivity Hub
+# ProdigySpace | Student Productivity Hub
 
 A productivity application designed specifically for students. ProdigySpace helps you manage expenses, organize tasks, and stay productive throughout your academic journey.
 
@@ -45,31 +45,33 @@ A productivity application designed specifically for students. ProdigySpace help
 
 ### Installation
 
-1. Clone the repository:
-   \`\`\`bash
-   git clone https://github.com/yourusername/studysync.git
-   cd studysync
-   \`\`\`
+**1. Clone the repository:**
 
-2. Install dependencies:
-   \`\`\`bash
+ ```bash
+   git clone https://github.com/1046prt/prodigyspace.git
+   cd prodigyspace
+```
+
+**2. Install dependencies:**
+
+  ```bash
    npm install
+```
 
-# or
+## or
 
 yarn install
 \`\`\`
 
-3. Run the development server:
+**3. Run the development server:**
    \`\`\`bash
    npm run dev
 
-# or
-
+**or**
 yarn dev
 \`\`\`
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+**4. Open [http://localhost:3000](http://localhost:3000) in your browser.**
 
 ### Building for Production
 
@@ -85,7 +87,7 @@ ProdigySpace can be installed as a Progressive Web App (PWA) on your device:
 1. Open the app in your browser
 2. Look for the "Install" prompt or use your browser's install option
 3. Follow the installation prompts
-4. Access StudySync from your home screen like a native app
+4. Access prodigyspace from your home screen like a native app
 
 ## 🛠️ Technology Stack
 
@@ -111,7 +113,7 @@ All data is stored locally in your browser using localStorage, ensuring:
 
 ### Themes
 
-StudySync supports both light and dark themes that automatically adapt to your system preferences or can be manually toggled.
+prodigyspace supports both light and dark themes that automatically adapt to your system preferences or can be manually toggled.
 
 ### Categories
 
@@ -137,7 +139,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🐛 Bug Reports
 
-If you encounter any bugs or issues, please [open an issue](https://github.com/yourusername/studysync/issues) with:
+If you encounter any bugs or issues, please [open an issue](https://github.com/1046prt/prodigyspace/issues) with:
 
 - A clear description of the problem
 - Steps to reproduce
@@ -146,25 +148,10 @@ If you encounter any bugs or issues, please [open an issue](https://github.com/y
 
 ## 💡 Feature Requests
 
-Have an idea for a new feature? We'd love to hear it! [Open a feature request](https://github.com/yourusername/studysync/issues) and describe:
+Have an idea for a new feature? We'd love to hear it! [Open a feature request](https://github.com/1046prt/prodigyspace/issues) and describe:
 
 - The feature you'd like to see
 - Why it would be useful
 - How you envision it working
 
-## 📞 Support
-
-- 📧 Email: support@prodigyspace.app
-- 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/studysync/discussions)
-- 🐦 Twitter: [@StudySyncApp](https://twitter.com/StudySyncApp)
-
-## 🙏 Acknowledgments
-
-- Built with [Next.js](https://nextjs.org/)
-- UI components from [shadcn/ui](https://ui.shadcn.com/)
-- Icons by [Lucide](https://lucide.dev/)
-- Charts powered by [Recharts](https://recharts.org/)
-
 ---
-
-Made with ❤️ for students, by students.

@@ -4,8 +4,8 @@ import { useState, useEffect, useCallback } from "react"
 import { storage } from "@/lib/storage"
 import type { Expense, ExpenseCategory, Budget, ExpenseStats } from "@/types/expense"
 
-const EXPENSES_KEY = "studysync_expenses"
-const BUDGETS_KEY = "studysync_budgets"
+const EXPENSES_KEY = "prodigyspace_expenses"
+const BUDGETS_KEY = "prodigyspace_budgets"
 
 export function useExpenses() {
   const [expenses, setExpenses] = useState<Expense[]>([])
