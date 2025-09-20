@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono";
 import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
 import "./globals.css";
 import { Suspense } from "react";
 
@@ -124,7 +125,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}
+        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <ThemeProvider
           attribute="class"
@@ -132,11 +133,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-screen bg-background">
+          <div className="flex flex-col min-h-screen bg-background">
             <Navigation />
-            <main>
+            <main className="flex-grow">
               <Suspense fallback={null}>{children}</Suspense>
             </main>
+            <Footer />
           </div>
         </ThemeProvider>
         <Analytics />

@@ -382,20 +382,6 @@ export default function HomePage() {
             </CardContent>
           </Card>
         )}
-
-        <div className="text-center py-8">
-          <p className="text-sm text-muted-foreground mb-4">
-            ProdigySpace - Empowering students with comprehensive digital
-            organization tools
-          </p>
-          <div className="flex justify-center gap-4 text-xs text-muted-foreground">
-            <span>Offline-First</span>
-            <span>•</span>
-            <span>Privacy-Focused</span>
-            <span>•</span>
-            <span>Student-Designed</span>
-          </div>
-        </div>
       </div>
     </div>
   );

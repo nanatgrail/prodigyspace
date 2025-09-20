@@ -1,9 +1,15 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Home, ArrowLeft, Search } from "lucide-react"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Home, ArrowLeft, Search } from "lucide-react";
 
 export default function NotFound() {
   return (
@@ -14,9 +20,12 @@ export default function NotFound() {
             <div className="mx-auto w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-4">
               <span className="text-4xl">🤔</span>
             </div>
-            <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">Page Not Found</CardTitle>
+            <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+              Page Not Found
+            </CardTitle>
             <CardDescription className="text-gray-600 dark:text-gray-300">
-              Sorry, we couldn't find the page you're looking for. It might have been moved or doesn't exist.
+              Sorry, we couldn't find the page you're looking for. It might have
+              been moved or doesn't exist.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -33,7 +42,11 @@ export default function NotFound() {
                   Browse Features
                 </Button>
               </Link>
-              <Button className="w-full" variant="ghost" onClick={() => window.history.back()}>
+              <Button
+                className="w-full"
+                variant="ghost"
+                onClick={() => window.history.back()}
+              >
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Go Back
               </Button>
@@ -42,5 +55,5 @@ export default function NotFound() {
         </Card>
       </div>
     </div>
-  )
+  );
 }
