@@ -16,8 +16,12 @@ export function Footer() {
           {/* Brand - Left Side */}
           <div className="space-y-3">
             <div className="flex items-center space-x-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white">
-                <GraduationCap className="h-5 w-5 text-black" />
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg">
+                <img
+                  src="/logo.png"
+                  alt="ProdigySpace Logo"
+                  className="h-6 w-6"
+                />
               </div>
               <span className="text-lg font-bold">prodigyspace</span>
             </div>

@@ -40,8 +40,12 @@ export function Navigation() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="p-2 bg-blue-600 rounded-lg">
-              <BookOpen className="h-5 w-5 text-white" />
+            <div className="p-2 rounded-lg">
+              <img
+                src="/logo.png"
+                alt="ProdigySpace Logo"
+                className="h-6 w-6"
+              />
             </div>
             <span className="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               ProdigySpace
