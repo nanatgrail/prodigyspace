@@ -1,11 +1,23 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Dialog,
   DialogContent,
@@ -13,15 +25,32 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { useExpenses } from "@/hooks/use-expenses"
-import type { ExpenseCategory } from "@/types/expense"
-import { Plus, TrendingUp, DollarSign, LucidePieChart as RechartsPieChart, Download, Trash2 } from "lucide-react"
-import { exportToCSV } from "@/lib/csv-export"
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Pie, Cell } from "recharts"
+} from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useExpenses } from "@/hooks/use-expenses";
+import type { ExpenseCategory } from "@/types/expense";
+import {
+  Plus,
+  TrendingUp,
+  DollarSign,
+  LucidePieChart as RechartsPieChart,
+  Download,
+  Trash2,
+} from "lucide-react";
+import { exportToCSV } from "@/lib/csv-export";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Pie,
+  Cell,
+} from "recharts";
 
 const categoryLabels: Record<ExpenseCategory, string> = {
   food: "Food & Dining",
@@ -30,7 +59,7 @@ const categoryLabels: Record<ExpenseCategory, string> = {
   entertainment: "Entertainment",
   health: "Health & Fitness",
   other: "Other",
-}
+};
 
 const categoryColors: Record<ExpenseCategory, string> = {
   food: "#15803d",
@@ -39,38 +68,58 @@ const categoryColors: Record<ExpenseCategory, string> = {
   entertainment: "#374151",
   health: "#f0fdf4",
   other: "#e5e7eb",
-}
+};
+
+// Helper function to format currency in INR
+const formatINR = (amount: number): string => {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    minimumFractionDigits: 2,
+  }).format(amount);
+};
 
 export function ExpenseTracker() {
-  const { expenses, budgets, loading, addExpense, deleteExpense, updateBudget } = useExpenses()
-  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
+  const {
+    expenses,
+    budgets,
+    loading,
+    addExpense,
+    deleteExpense,
+    updateBudget,
+  } = useExpenses();
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [newExpense, setNewExpense] = useState({
     amount: "",
     category: "" as ExpenseCategory,
     description: "",
     date: new Date().toISOString().split("T")[0],
-  })
+  });
 
-  const stats = useExpenses().getExpenseStats()
+  const stats = useExpenses().getExpenseStats();
 
   const handleAddExpense = () => {
-    if (!newExpense.amount || !newExpense.category || !newExpense.description) return
+    if (!newExpense.amount || !newExpense.category || !newExpense.description)
+      return;
+
+    const amount = Number.parseFloat(newExpense.amount);
+    if (isNaN(amount)) return;
 
     addExpense({
-      amount: Number.parseFloat(newExpense.amount),
+      amount,
       category: newExpense.category,
       description: newExpense.description,
       date: newExpense.date,
-    })
+    });
 
     setNewExpense({
       amount: "",
       category: "" as ExpenseCategory,
       description: "",
       date: new Date().toISOString().split("T")[0],
-    })
-    setIsAddDialogOpen(false)
-  }
+    });
+    setIsAddDialogOpen(false);
+  };
 
   const handleExportCSV = () => {
     const exportData = expenses.map((expense) => ({
@@ -78,9 +127,12 @@ export function ExpenseTracker() {
       Category: categoryLabels[expense.category],
       Description: expense.description,
       Amount: expense.amount,
-    }))
-    exportToCSV(exportData, `expenses_${new Date().toISOString().split("T")[0]}`)
-  }
+    }));
+    exportToCSV(
+      exportData,
+      `expenses_${new Date().toISOString().split("T")[0]}`
+    );
+  };
 
   const pieChartData = Object.entries(stats.categoryBreakdown)
     .filter(([_, amount]) => amount > 0)
@@ -88,15 +140,17 @@ export function ExpenseTracker() {
       name: categoryLabels[category as ExpenseCategory],
       value: amount,
       color: categoryColors[category as ExpenseCategory],
-    }))
+    }));
 
   const weeklyChartData = stats.weeklySpending.map((amount, index) => ({
     week: `Week ${index + 1}`,
     amount,
-  }))
+  }));
 
   if (loading) {
-    return <div className="flex items-center justify-center p-8">Loading...</div>
+    return (
+      <div className="flex items-center justify-center p-8">Loading...</div>
+    );
   }
 
   return (
@@ -104,8 +158,12 @@ export function ExpenseTracker() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-foreground">Expense Tracker</h2>
-          <p className="text-muted-foreground">Track your spending and manage your budget</p>
+          <h2 className="text-2xl font-bold text-foreground">
+            Expense Tracker
+          </h2>
+          <p className="text-muted-foreground">
+            Track your spending and manage your budget
+          </p>
         </div>
         <div className="flex gap-2">
           <Button onClick={handleExportCSV} variant="outline" size="sm">
@@ -122,7 +180,9 @@ export function ExpenseTracker() {
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>Add New Expense</DialogTitle>
-                <DialogDescription>Record a new expense to track your spending</DialogDescription>
+                <DialogDescription>
+                  Record a new expense to track your spending
+                </DialogDescription>
               </DialogHeader>
               <div className="space-y-4">
                 <div>
@@ -133,14 +193,21 @@ export function ExpenseTracker() {
                     step="0.01"
                     placeholder="0.00"
                     value={newExpense.amount}
-                    onChange={(e) => setNewExpense((prev) => ({ ...prev, amount: e.target.value }))}
+                    onChange={(e) =>
+                      setNewExpense((prev) => ({
+                        ...prev,
+                        amount: e.target.value,
+                      }))
+                    }
                   />
                 </div>
                 <div>
                   <Label htmlFor="category">Category</Label>
                   <Select
                     value={newExpense.category}
-                    onValueChange={(value: ExpenseCategory) => setNewExpense((prev) => ({ ...prev, category: value }))}
+                    onValueChange={(value: ExpenseCategory) =>
+                      setNewExpense((prev) => ({ ...prev, category: value }))
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select category" />
@@ -160,7 +227,12 @@ export function ExpenseTracker() {
                     id="description"
                     placeholder="What did you spend on?"
                     value={newExpense.description}
-                    onChange={(e) => setNewExpense((prev) => ({ ...prev, description: e.target.value }))}
+                    onChange={(e) =>
+                      setNewExpense((prev) => ({
+                        ...prev,
+                        description: e.target.value,
+                      }))
+                    }
                   />
                 </div>
                 <div>
@@ -169,7 +241,12 @@ export function ExpenseTracker() {
                     id="date"
                     type="date"
                     value={newExpense.date}
-                    onChange={(e) => setNewExpense((prev) => ({ ...prev, date: e.target.value }))}
+                    onChange={(e) =>
+                      setNewExpense((prev) => ({
+                        ...prev,
+                        date: e.target.value,
+                      }))
+                    }
                   />
                 </div>
                 <Button onClick={handleAddExpense} className="w-full">
@@ -189,17 +266,23 @@ export function ExpenseTracker() {
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${stats.totalSpent.toFixed(2)}</div>
+            <div className="text-2xl font-bold">
+              {formatINR(stats.totalSpent)}
+            </div>
             <p className="text-xs text-muted-foreground">This month</p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Budget Remaining</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Budget Remaining
+            </CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${stats.budgetRemaining.toFixed(2)}</div>
+            <div className="text-2xl font-bold">
+              {formatINR(stats.budgetRemaining)}
+            </div>
             <p className="text-xs text-muted-foreground">
               {stats.budgetRemaining >= 0 ? "Under budget" : "Over budget"}
             </p>
@@ -230,7 +313,9 @@ export function ExpenseTracker() {
             <Card>
               <CardHeader>
                 <CardTitle>Weekly Spending Trend</CardTitle>
-                <CardDescription>Your spending over the last 7 weeks</CardDescription>
+                <CardDescription>
+                  Your spending over the last 7 weeks
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -238,7 +323,12 @@ export function ExpenseTracker() {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="week" />
                     <YAxis />
-                    <Tooltip formatter={(value) => [`$${value}`, "Amount"]} />
+                    <Tooltip
+                      formatter={(value) => [
+                        `${formatINR(value as number)}`,
+                        "Amount",
+                      ]}
+                    />
                     <Bar dataKey="amount" fill="var(--color-primary)" />
                   </BarChart>
                 </ResponsiveContainer>
@@ -261,13 +351,20 @@ export function ExpenseTracker() {
                         cy="50%"
                         outerRadius={80}
                         dataKey="value"
-                        label={({ name, value }) => `${name}: $${value}`}
+                        label={({ name, value }) =>
+                          `${name}: ${formatINR(value as number)}`
+                        }
                       >
                         {pieChartData.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={entry.color} />
                         ))}
                       </Pie>
-                      <Tooltip formatter={(value) => [`$${value}`, "Amount"]} />
+                      <Tooltip
+                        formatter={(value) => [
+                          `${formatINR(value as number)}`,
+                          "Amount",
+                        ]}
+                      />
                     </RechartsPieChart>
                   </ResponsiveContainer>
                 ) : (
@@ -289,26 +386,36 @@ export function ExpenseTracker() {
             <CardContent>
               {expenses.length === 0 ? (
                 <div className="text-center py-8 text-muted-foreground">
-                  No expenses recorded yet. Add your first expense to get started!
+                  No expenses recorded yet. Add your first expense to get
+                  started!
                 </div>
               ) : (
                 <div className="space-y-2">
                   {expenses.slice(0, 10).map((expense) => (
-                    <div key={expense.id} className="flex items-center justify-between p-3 border rounded-lg">
+                    <div
+                      key={expense.id}
+                      className="flex items-center justify-between p-3 border rounded-lg"
+                    >
                       <div className="flex items-center gap-3">
                         <div
                           className="w-3 h-3 rounded-full"
-                          style={{ backgroundColor: categoryColors[expense.category] }}
+                          style={{
+                            backgroundColor: categoryColors[expense.category],
+                          }}
                         />
                         <div>
-                          <div className="font-medium">{expense.description}</div>
+                          <div className="font-medium">
+                            {expense.description}
+                          </div>
                           <div className="text-sm text-muted-foreground">
                             {categoryLabels[expense.category]} • {expense.date}
                           </div>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="font-bold">${expense.amount.toFixed(2)}</span>
+                        <span className="font-bold">
+                          {formatINR(expense.amount)}
+                        </span>
                         <Button
                           variant="ghost"
                           size="sm"
@@ -330,14 +437,17 @@ export function ExpenseTracker() {
           <Card>
             <CardHeader>
               <CardTitle>Budget Management</CardTitle>
-              <CardDescription>Set and track your spending limits</CardDescription>
+              <CardDescription>
+                Set and track your spending limits
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {budgets.map((budget) => {
-                  const spent = stats.categoryBreakdown[budget.category]
-                  const percentage = budget.limit > 0 ? (spent / budget.limit) * 100 : 0
-                  const isOverBudget = spent > budget.limit
+                  const spent = stats.categoryBreakdown[budget.category];
+                  const percentage =
+                    budget.limit > 0 ? (spent / budget.limit) * 100 : 0;
+                  const isOverBudget = spent > budget.limit;
 
                   return (
                     <div key={budget.category} className="space-y-2">
@@ -345,13 +455,17 @@ export function ExpenseTracker() {
                         <div className="flex items-center gap-2">
                           <div
                             className="w-3 h-3 rounded-full"
-                            style={{ backgroundColor: categoryColors[budget.category] }}
+                            style={{
+                              backgroundColor: categoryColors[budget.category],
+                            }}
                           />
-                          <span className="font-medium">{categoryLabels[budget.category]}</span>
+                          <span className="font-medium">
+                            {categoryLabels[budget.category]}
+                          </span>
                         </div>
                         <div className="flex items-center gap-2">
                           <span className="text-sm">
-                            ${spent.toFixed(2)} / ${budget.limit.toFixed(2)}
+                            {formatINR(spent)} / {formatINR(budget.limit)}
                           </span>
                           {isOverBudget && (
                             <Badge variant="destructive" className="text-xs">
@@ -362,10 +476,12 @@ export function ExpenseTracker() {
                       </div>
                       <Progress
                         value={Math.min(percentage, 100)}
-                        className={`h-2 ${isOverBudget ? "bg-destructive/20" : ""}`}
+                        className={`h-2 ${
+                          isOverBudget ? "bg-destructive/20" : ""
+                        }`}
                       />
                     </div>
-                  )
+                  );
                 })}
               </div>
             </CardContent>
@@ -373,5 +489,5 @@ export function ExpenseTracker() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
