@@ -1,20 +1,31 @@
-"use client"
+"use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { MoodTracker } from "@/components/mood-tracker"
-import { MeditationCenter } from "@/components/meditation-center"
-import { useWellbeing } from "@/hooks/use-wellbeing"
-import { Heart, Brain, Target, TrendingUp } from "lucide-react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { MoodTracker } from "@/components/mood-tracker";
+import { MeditationCenter } from "@/components/meditation-center";
+import { GoalsManager } from "@/components/goals-manager";
+import { InsightsDashboard } from "@/components/insights-dashboard";
+import { useWellbeing } from "@/hooks/use-wellbeing";
+import { Heart, Brain, Target, TrendingUp } from "lucide-react";
 
 export default function WellbeingPage() {
-  const { moodEntries, meditationSessions, addMoodEntry, addMeditationSession } = useWellbeing()
+  const {
+    moodEntries,
+    meditationSessions,
+    wellbeingGoals,
+    addMoodEntry,
+    addMeditationSession,
+    addWellbeingGoal,
+    updateGoalProgress,
+  } = useWellbeing();
 
   return (
     <div className="container mx-auto p-6">
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-2">Well-being Center</h1>
         <p className="text-muted-foreground">
-          Track your mental health, practice mindfulness, and maintain balance in your student life.
+          Track your mental health, practice mindfulness, and maintain balance
+          in your student life.
         </p>
       </div>
 
@@ -43,25 +54,27 @@ export default function WellbeingPage() {
         </TabsContent>
 
         <TabsContent value="meditation">
-          <MeditationCenter sessions={meditationSessions} onAddSession={addMeditationSession} />
+          <MeditationCenter
+            sessions={meditationSessions}
+            onAddSession={addMeditationSession}
+          />
         </TabsContent>
 
         <TabsContent value="goals">
-          <div className="text-center py-12">
-            <Target className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-lg font-medium mb-2">Well-being Goals</h3>
-            <p className="text-muted-foreground">Set and track your mental health and wellness goals.</p>
-          </div>
+          <GoalsManager
+            goals={wellbeingGoals}
+            onAddGoal={addWellbeingGoal}
+            onUpdateProgress={updateGoalProgress}
+          />
         </TabsContent>
 
         <TabsContent value="insights">
-          <div className="text-center py-12">
-            <TrendingUp className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-lg font-medium mb-2">Well-being Insights</h3>
-            <p className="text-muted-foreground">Analyze your mood patterns and meditation progress.</p>
-          </div>
+          <InsightsDashboard
+            moodEntries={moodEntries}
+            meditationSessions={meditationSessions}
+          />
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
