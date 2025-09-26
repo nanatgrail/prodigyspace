@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { GraduationCap, Target, Users, Zap } from "lucide-react";
+import styles from "../../styles/about.css";
 
 export default function AboutPage() {
   const values = [
@@ -36,14 +37,12 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="container px-4">
+    <div className={styles.aboutContainer}>
+      <div className={styles.aboutContent}>
         {/* Hero Section */}
-        <div className="mx-auto max-w-4xl text-center mb-16">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-6">
-            About ProdigySpace
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+        <div className={styles.heroSection}>
+          <h1 className={styles.heroTitle}>About ProdigySpace</h1>
+          <p className={styles.heroSubtitle}>
             ProdigySpace was created by students, for students. We understand
             the unique challenges of managing academic life, personal finances,
             and staying organized while pursuing your education.
@@ -51,15 +50,15 @@ export default function AboutPage() {
         </div>
 
         {/* Mission Section */}
-        <div className="mx-auto max-w-3xl mb-16">
-          <Card className="border-0 shadow-lg">
-            <CardHeader className="text-center pb-6">
-              <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+        <div className={styles.missionSection}>
+          <Card className={styles.missionCard}>
+            <CardHeader className={styles.missionCardHeader}>
+              <CardTitle className={styles.missionCardTitle}>
                 Our Mission
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-center">
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+            <CardContent className={styles.missionCardContent}>
+              <p className={styles.missionDescription}>
                 To empower students with simple, powerful tools that help them
                 stay organized, manage their finances, and focus on what matters
                 most - their education and personal growth. We believe that
@@ -71,26 +70,27 @@ export default function AboutPage() {
         </div>
 
         {/* Values Section */}
-        <div className="mx-auto max-w-5xl mb-16">
-          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-            What We Stand For
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className={styles.valuesSection}>
+          <h2 className={styles.valuesTitle}>What We Stand For</h2>
+          <div className={`${styles.valuesGrid} ${styles.twoColumns}`}>
             {values.map((value, index) => (
-              <Card
-                key={index}
-                className="border-0 shadow-md hover:shadow-lg transition-shadow"
-              >
-                <CardHeader>
-                  <div className="flex items-center space-x-3 mb-2">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900/20">
+              <Card key={index} className={styles.valueCard}>
+                <CardHeader className={styles.valueCardHeader}>
+                  <div className={styles.valueIconContainer}>
+                    <div
+                      className={`${styles.valueIconWrapper} ${styles.light} ${styles.dark}`}
+                    >
                       <value.icon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                     </div>
-                    <CardTitle className="text-xl">{value.title}</CardTitle>
+                    <CardTitle className={styles.valueCardTitle}>
+                      {value.title}
+                    </CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                <CardContent className={styles.valueCardContent}>
+                  <CardDescription
+                    className={`${styles.valueDescription} ${styles.dark}`}
+                  >
                     {value.description}
                   </CardDescription>
                 </CardContent>
@@ -100,49 +100,47 @@ export default function AboutPage() {
         </div>
 
         {/* Features Overview */}
-        <div className="mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-            Why Choose prodigyspace?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="mx-auto w-16 h-16 bg-emerald-100 dark:bg-emerald-900/20 rounded-full flex items-center justify-center mb-4">
+        <div className={styles.featuresSection}>
+          <h2 className={styles.featuresTitle}>Why Choose prodigyspace?</h2>
+          <div className={`${styles.featuresGrid} ${styles.threeColumns}`}>
+            <div className={styles.featureItem}>
+              <div
+                className={`${styles.featureIconWrapper} ${styles.emerald} ${styles.dark}`}
+              >
                 <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                   💰
                 </span>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                Smart Budgeting
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h3 className={styles.featureTitle}>Smart Budgeting</h3>
+              <p className={`${styles.featureDescription} ${styles.dark}`}>
                 Track expenses with categories, set budgets, and visualize your
                 spending patterns with intuitive charts.
               </p>
             </div>
-            <div className="text-center">
-              <div className="mx-auto w-16 h-16 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center mb-4">
+            <div className={styles.featureItem}>
+              <div
+                className={`${styles.featureIconWrapper} ${styles.blue} ${styles.dark}`}
+              >
                 <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
                   ✅
                 </span>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                Task Management
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h3 className={styles.featureTitle}>Task Management</h3>
+              <p className={`${styles.featureDescription} ${styles.dark}`}>
                 Organize assignments, set priorities, and never miss a deadline
                 with our comprehensive task system.
               </p>
             </div>
-            <div className="text-center">
-              <div className="mx-auto w-16 h-16 bg-amber-100 dark:bg-amber-900/20 rounded-full flex items-center justify-center mb-4">
+            <div className={styles.featureItem}>
+              <div
+                className={`${styles.featureIconWrapper} ${styles.amber} ${styles.dark}`}
+              >
                 <span className="text-2xl font-bold text-amber-600 dark:text-amber-400">
                   📝
                 </span>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                Quick Notes
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h3 className={styles.featureTitle}>Quick Notes</h3>
+              <p className={`${styles.featureDescription} ${styles.dark}`}>
                 Capture ideas instantly with sticky notes that you can organize,
                 color-code, and access offline.
               </p>
