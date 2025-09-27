@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Home, ArrowLeft, Search } from "lucide-react";
-import styles from "./not-found.module.css";
+import styles from "@/styles/not-found.module.css";
 
 export default function NotFound() {
   return (
@@ -21,9 +21,7 @@ export default function NotFound() {
             <div className={styles.iconContainer}>
               <span className="text-4xl">🤔</span>
             </div>
-            <CardTitle className={styles.title}>
-              Page Not Found
-            </CardTitle>
+            <CardTitle className={styles.title}>Page Not Found</CardTitle>
             <CardDescription className={styles.description}>
               Sorry, we couldn't find the page you're looking for. It might have
               been moved or doesn't exist.

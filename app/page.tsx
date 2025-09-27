@@ -25,7 +25,7 @@ import { useTasks } from "@/hooks/use-tasks";
 import { useNotes } from "@/hooks/use-notes";
 import { useCollaboration } from "@/hooks/use-collaboration";
 import { useWellbeing } from "@/hooks/use-wellbeing";
-import styles from "./page.module.css";
+import styles from "@/styles/page.module.css";
 
 export default function HomePage() {
   const { tasks } = useTasks();

@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import "./globals.css";
+import "@/styles/globals.css";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
