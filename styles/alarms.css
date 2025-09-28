@@ -1,0 +1,279 @@
+/* Alarms Page Styles */
+
+.alarms-container {
+  /* Equivalent to Tailwind's container */
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  /* Equivalent to Tailwind's px-4 py-8 */
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Container widths for different screen sizes (Tailwind's container breakpoints) */
+@media (min-width: 640px) {
+  .alarms-container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .alarms-container {
+    max-width: 768px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .alarms-container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .alarms-container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .alarms-container {
+    max-width: 1536px;
+  }
+}
+
+/* Alarm Manager Component Styles */
+.mainpage-alarm-manager {
+  margin-top: 1.5rem;
+}
+
+.mainpage-alarm-manager > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1.5rem;
+}
+
+.mainpage-alarm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mainpage-alarm-title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+}
+
+.mainpage-alarm-subtitle {
+  color: hsl(var(--muted-foreground));
+}
+
+.mainpage-notification-card {
+  border-color: #fef08a;
+  background-color: #fefce8;
+}
+
+.mainpage-notification-card-dark {
+  border-color: #854d0e;
+  background-color: #0c0a09;
+}
+
+.mainpage-card-header {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0;
+  padding-bottom: 0.5rem;
+}
+
+.mainpage-card-title {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+}
+
+.mainpage-icon {
+  height: 1rem;
+  width: 1rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.mainpage-large-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.mainpage-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .mainpage-stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.mainpage-stat-number {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+.mainpage-stat-label {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.mainpage-tabs-content {
+  margin-top: 1rem;
+}
+
+.mainpage-tabs-content > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1rem;
+}
+
+.mainpage-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mainpage-dialog-button {
+  margin-right: 0.5rem;
+}
+
+.mainpage-form-section {
+  margin-top: 1rem;
+}
+
+.mainpage-form-section > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1rem;
+}
+
+.mainpage-days-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.mainpage-day-item {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+
+.mainpage-day-item > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 0.5rem;
+}
+
+.mainpage-switch-container {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+
+.mainpage-switch-container > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 0.5rem;
+}
+
+.mainpage-full-width {
+  width: 100%;
+}
+
+.mainpage-empty-state {
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.mainpage-alarm-list {
+  margin-top: 0.75rem;
+}
+
+.mainpage-alarm-list > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.75rem;
+}
+
+.mainpage-alarm-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-width: 1px;
+  border-radius: 0.5rem;
+}
+
+.mainpage-alarm-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mainpage-alarm-time {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.mainpage-alarm-description {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: hsl(var(--muted-foreground));
+  margin-top: 0.25rem;
+}
+
+.mainpage-days-list {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.mainpage-badge {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  margin-top: 0.5rem;
+}
+
+.mainpage-delete-button {
+  color: hsl(var(--destructive));
+}
+
+.mainpage-delete-button:hover {
+  color: hsl(var(--destructive));
+}
+
+.mainpage-warning-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #92400e;
+}
+
+.mainpage-warning-title-dark {
+  color: #fef08a;
+}
+
+.mainpage-warning-description {
+  color: #c2410c;
+}
+
+.mainpage-warning-description-dark {
+  color: #fcd34d;
+}
+
+.mainpage-loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
