@@ -51,6 +51,7 @@ import {
   Pie,
   Cell,
 } from "recharts";
+import styles from "@styles/expense.css";
 
 const categoryLabels: Record<ExpenseCategory, string> = {
   food: "Food & Dining",
@@ -149,23 +150,21 @@ export function ExpenseTracker() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center p-8">Loading...</div>
+      <div className={styles["mainpage-loading-container"]}>Loading...</div>
     );
   }
 
   return (
-    <div className="space-y-6">
+    <div className={styles["mainpage-expense-tracker"]}>
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className={styles["mainpage-expense-header"]}>
         <div>
-          <h2 className="text-2xl font-bold text-foreground">
-            Expense Tracker
-          </h2>
-          <p className="text-muted-foreground">
+          <h2 className={styles["mainpage-expense-title"]}>Expense Tracker</h2>
+          <p className={styles["mainpage-expense-subtitle"]}>
             Track your spending and manage your budget
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className={styles["mainpage-button-group"]}>
           <Button onClick={handleExportCSV} variant="outline" size="sm">
             <Download className="h-4 w-4 mr-2" />
             Export CSV
@@ -259,10 +258,12 @@ export function ExpenseTracker() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className={styles["mainpage-stats-grid"]}>
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Spent</CardTitle>
+          <CardHeader className={styles["mainpage-card-header-flex"]}>
+            <CardTitle className={styles["mainpage-card-title-small"]}>
+              Total Spent
+            </CardTitle>
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -273,8 +274,8 @@ export function ExpenseTracker() {
           </CardContent>
         </Card>
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
+          <CardHeader className={styles["mainpage-card-header-flex"]}>
+            <CardTitle className={styles["mainpage-card-title-small"]}>
               Budget Remaining
             </CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
@@ -289,8 +290,10 @@ export function ExpenseTracker() {
           </CardContent>
         </Card>
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Expenses</CardTitle>
+          <CardHeader className={styles["mainpage-card-header-flex"]}>
+            <CardTitle className={styles["mainpage-card-title-small"]}>
+              Expenses
+            </CardTitle>
             <RechartsPieChart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -301,14 +304,14 @@ export function ExpenseTracker() {
       </div>
 
       <Tabs defaultValue="overview" className="space-y-4">
-        <TabsList>
+        <TabsList className={styles["mainpage-tabs-list"]}>
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="expenses">Expenses</TabsTrigger>
           <TabsTrigger value="budgets">Budgets</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="space-y-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className={styles["mainpage-chart-container"]}>
             {/* Weekly Spending Chart */}
             <Card>
               <CardHeader>
@@ -368,7 +371,7 @@ export function ExpenseTracker() {
                     </RechartsPieChart>
                   </ResponsiveContainer>
                 ) : (
-                  <div className="flex items-center justify-center h-[300px] text-muted-foreground">
+                  <div className={styles["mainpage-no-data-message"]}>
                     No expenses recorded yet
                   </div>
                 )}
@@ -385,7 +388,7 @@ export function ExpenseTracker() {
             </CardHeader>
             <CardContent>
               {expenses.length === 0 ? (
-                <div className="text-center py-8 text-muted-foreground">
+                <div className={styles["mainpage-no-expenses-message"]}>
                   No expenses recorded yet. Add your first expense to get
                   started!
                 </div>
@@ -394,11 +397,11 @@ export function ExpenseTracker() {
                   {expenses.slice(0, 10).map((expense) => (
                     <div
                       key={expense.id}
-                      className="flex items-center justify-between p-3 border rounded-lg"
+                      className={styles["mainpage-expense-item"]}
                     >
-                      <div className="flex items-center gap-3">
+                      <div className={styles["mainpage-expense-details"]}>
                         <div
-                          className="w-3 h-3 rounded-full"
+                          className={styles["mainpage-category-indicator"]}
                           style={{
                             backgroundColor: categoryColors[expense.category],
                           }}
@@ -412,7 +415,7 @@ export function ExpenseTracker() {
                           </div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className={styles["mainpage-expense-actions"]}>
                         <span className="font-bold">
                           {formatINR(expense.amount)}
                         </span>
@@ -450,11 +453,14 @@ export function ExpenseTracker() {
                   const isOverBudget = spent > budget.limit;
 
                   return (
-                    <div key={budget.category} className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
+                    <div
+                      key={budget.category}
+                      className={styles["mainpage-budget-item"]}
+                    >
+                      <div className={styles["mainpage-budget-header"]}>
+                        <div className={styles["mainpage-budget-category"]}>
                           <div
-                            className="w-3 h-3 rounded-full"
+                            className={styles["mainpage-category-indicator"]}
                             style={{
                               backgroundColor: categoryColors[budget.category],
                             }}
@@ -464,7 +470,7 @@ export function ExpenseTracker() {
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-sm">
+                          <span className={styles["mainpage-budget-amount"]}>
                             {formatINR(spent)} / {formatINR(budget.limit)}
                           </span>
                           {isOverBudget && (
@@ -476,8 +482,10 @@ export function ExpenseTracker() {
                       </div>
                       <Progress
                         value={Math.min(percentage, 100)}
-                        className={`h-2 ${
-                          isOverBudget ? "bg-destructive/20" : ""
+                        className={`${styles["mainpage-progress-container"]} ${
+                          isOverBudget
+                            ? styles["mainpage-progress-over-budget"]
+                            : ""
                         }`}
                       />
                     </div>
