@@ -1,0 +1,126 @@
+.bookmarkManager {
+  /* Main container */
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addButton {
+  /* Button styles inherited from shadcn Button component */
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.addForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background-color: hsl(var(--muted));
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  /* Label styles inherited from shadcn Label component */
+}
+
+.formInput {
+  /* Input styles inherited from shadcn Input component */
+}
+
+.formSelect {
+  /* Select styles inherited from shadcn Select component */
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bookmarkListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 16rem;
+  overflow-y: auto;
+}
+
+.emptyState {
+  text-align: center;
+  color: hsl(var(--muted-foreground));
+  padding: 1rem;
+}
+
+.bookmarkItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background-color: hsl(var(--muted));
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.bookmarkInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.bookmarkTitle {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bookmarkUrl {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bookmarkCategory {
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.actionButtons {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: 0.5rem;
+}
+
+.actionButton {
+  /* Button styles inherited from shadcn Button variant ghost */
+}
+
+.icon {
+  /* Icon styles */
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,104 +1,138 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Bookmark, Plus, ExternalLink, Trash2, Edit } from "lucide-react"
-import { useBookmarks } from "@/hooks/use-bookmarks"
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Bookmark, Plus, ExternalLink, Trash2, Edit } from "lucide-react";
+import { useBookmarks } from "@/hooks/use-bookmarks";
+import styles from "@styles/bookmark-manager.css";
 
 export function BookmarkManager() {
-  const { bookmarks, addBookmark, removeBookmark, updateBookmark, getBookmarksByCategory, getCategories } =
-    useBookmarks()
+  const {
+    bookmarks,
+    addBookmark,
+    removeBookmark,
+    updateBookmark,
+    getBookmarksByCategory,
+    getCategories,
+  } = useBookmarks();
 
-  const [showAddForm, setShowAddForm] = useState(false)
-  const [editingId, setEditingId] = useState<string | null>(null)
-  const [selectedCategory, setSelectedCategory] = useState<string>("all")
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [formData, setFormData] = useState({
     title: "",
     url: "",
     category: "Study",
-  })
+  });
 
-  const categories = ["Study", "Research", "Tools", "Entertainment", "Other"]
-  const allCategories = getCategories()
-  const displayedBookmarks = selectedCategory === "all" ? bookmarks : getBookmarksByCategory(selectedCategory)
+  const categories = ["Study", "Research", "Tools", "Entertainment", "Other"];
+  const allCategories = getCategories();
+  const displayedBookmarks =
+    selectedCategory === "all"
+      ? bookmarks
+      : getBookmarksByCategory(selectedCategory);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (formData.title && formData.url) {
       if (editingId) {
-        updateBookmark(editingId, formData)
-        setEditingId(null)
+        updateBookmark(editingId, formData);
+        setEditingId(null);
       } else {
-        addBookmark(formData.title, formData.url, formData.category)
+        addBookmark(formData.title, formData.url, formData.category);
       }
-      setFormData({ title: "", url: "", category: "Study" })
-      setShowAddForm(false)
+      setFormData({ title: "", url: "", category: "Study" });
+      setShowAddForm(false);
     }
-  }
+  };
 
   const handleEdit = (bookmark: any) => {
     setFormData({
       title: bookmark.title,
       url: bookmark.url,
       category: bookmark.category,
-    })
-    setEditingId(bookmark.id)
-    setShowAddForm(true)
-  }
+    });
+    setEditingId(bookmark.id);
+    setShowAddForm(true);
+  };
 
   const handleCancel = () => {
-    setFormData({ title: "", url: "", category: "Study" })
-    setEditingId(null)
-    setShowAddForm(false)
-  }
+    setFormData({ title: "", url: "", category: "Study" });
+    setEditingId(null);
+    setShowAddForm(false);
+  };
 
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="flex items-center gap-2">
-          <Bookmark className="h-5 w-5 text-purple-500" />
+    <Card className={styles.bookmarkManager}>
+      <CardHeader className={styles.header}>
+        <CardTitle className={styles.titleContainer}>
+          <Bookmark className={`${styles.icon} text-purple-500`} />
           Bookmarks
         </CardTitle>
-        <Button onClick={() => setShowAddForm(!showAddForm)} size="sm">
-          <Plus className="h-4 w-4" />
+        <Button
+          onClick={() => setShowAddForm(!showAddForm)}
+          size="sm"
+          className={styles.addButton}
+        >
+          <Plus className={styles.icon} />
         </Button>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className={styles.content}>
         {showAddForm && (
-          <form onSubmit={handleSubmit} className="space-y-3 p-3 bg-muted rounded-lg">
-            <div>
-              <Label htmlFor="title">Title</Label>
+          <form onSubmit={handleSubmit} className={styles.addForm}>
+            <div className={styles.formGroup}>
+              <Label htmlFor="title" className={styles.formLabel}>
+                Title
+              </Label>
               <Input
                 id="title"
                 value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, title: e.target.value })
+                }
                 placeholder="Enter bookmark title"
                 required
+                className={styles.formInput}
               />
             </div>
-            <div>
-              <Label htmlFor="url">URL</Label>
+            <div className={styles.formGroup}>
+              <Label htmlFor="url" className={styles.formLabel}>
+                URL
+              </Label>
               <Input
                 id="url"
                 value={formData.url}
-                onChange={(e) => setFormData({ ...formData, url: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, url: e.target.value })
+                }
                 placeholder="https://example.com"
                 required
+                className={styles.formInput}
               />
             </div>
-            <div>
-              <Label htmlFor="category">Category</Label>
+            <div className={styles.formGroup}>
+              <Label htmlFor="category" className={styles.formLabel}>
+                Category
+              </Label>
               <Select
                 value={formData.category}
-                onValueChange={(value) => setFormData({ ...formData, category: value })}
+                onValueChange={(value) =>
+                  setFormData({ ...formData, category: value })
+                }
               >
-                <SelectTrigger>
+                <SelectTrigger className={styles.formSelect}>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -110,8 +144,10 @@ export function BookmarkManager() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex gap-2">
-              <Button type="submit">{editingId ? "Update" : "Add"} Bookmark</Button>
+            <div className={styles.buttonGroup}>
+              <Button type="submit">
+                {editingId ? "Update" : "Add"} Bookmark
+              </Button>
               <Button type="button" variant="outline" onClick={handleCancel}>
                 Cancel
               </Button>
@@ -120,10 +156,13 @@ export function BookmarkManager() {
         )}
 
         {allCategories.length > 0 && (
-          <div>
-            <Label>Filter by Category</Label>
-            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-              <SelectTrigger>
+          <div className={styles.formGroup}>
+            <Label className={styles.formLabel}>Filter by Category</Label>
+            <Select
+              value={selectedCategory}
+              onValueChange={setSelectedCategory}
+            >
+              <SelectTrigger className={styles.formSelect}>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -138,26 +177,45 @@ export function BookmarkManager() {
           </div>
         )}
 
-        <div className="space-y-2 max-h-64 overflow-y-auto">
+        <div className={styles.bookmarkListContainer}>
           {displayedBookmarks.length === 0 ? (
-            <div className="text-center text-muted-foreground py-4">No bookmarks yet. Add your first bookmark!</div>
+            <div className={styles.emptyState}>
+              No bookmarks yet. Add your first bookmark!
+            </div>
           ) : (
             displayedBookmarks.map((bookmark) => (
-              <div key={bookmark.id} className="flex items-center justify-between p-3 bg-muted rounded-lg">
-                <div className="flex-1 min-w-0">
-                  <div className="font-medium truncate">{bookmark.title}</div>
-                  <div className="text-sm text-muted-foreground truncate">{bookmark.url}</div>
-                  <div className="text-xs text-muted-foreground">{bookmark.category}</div>
+              <div key={bookmark.id} className={styles.bookmarkItem}>
+                <div className={styles.bookmarkInfo}>
+                  <div className={styles.bookmarkTitle}>{bookmark.title}</div>
+                  <div className={styles.bookmarkUrl}>{bookmark.url}</div>
+                  <div className={styles.bookmarkCategory}>
+                    {bookmark.category}
+                  </div>
                 </div>
-                <div className="flex items-center gap-1 ml-2">
-                  <Button variant="ghost" size="sm" onClick={() => window.open(bookmark.url, "_blank")}>
-                    <ExternalLink className="h-4 w-4" />
+                <div className={styles.actionButtons}>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => window.open(bookmark.url, "_blank")}
+                    className={styles.actionButton}
+                  >
+                    <ExternalLink className={styles.icon} />
                   </Button>
-                  <Button variant="ghost" size="sm" onClick={() => handleEdit(bookmark)}>
-                    <Edit className="h-4 w-4" />
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleEdit(bookmark)}
+                    className={styles.actionButton}
+                  >
+                    <Edit className={styles.icon} />
                   </Button>
-                  <Button variant="ghost" size="sm" onClick={() => removeBookmark(bookmark.id)}>
-                    <Trash2 className="h-4 w-4" />
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => removeBookmark(bookmark.id)}
+                    className={styles.actionButton}
+                  >
+                    <Trash2 className={styles.icon} />
                   </Button>
                 </div>
               </div>
@@ -166,5 +224,5 @@ export function BookmarkManager() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
