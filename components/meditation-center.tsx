@@ -12,8 +12,6 @@ import {
   Heart,
   Brain,
   Waves,
-  Volume2,
-  VolumeX,
   Check,
 } from "lucide-react";
 import type { MeditationSession, BreathingExercise } from "@/types/wellbeing";
@@ -96,7 +94,6 @@ export function MeditationCenter({
   } | null>(null);
   const [meditationTimeLeft, setMeditationTimeLeft] = useState(0);
   const [isMeditationRunning, setIsMeditationRunning] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
   const [showCompletion, setShowCompletion] = useState(false);
   const meditationIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -177,6 +174,7 @@ export function MeditationCenter({
         clearInterval(meditationIntervalRef.current);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMeditationRunning, activeMeditation, meditationTimeLeft]);
 
   const startBreathingExercise = (exercise: BreathingExercise) => {

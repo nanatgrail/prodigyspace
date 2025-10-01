@@ -67,7 +67,7 @@ export class LocalStorageManager {
   }
 
   exportData(): string {
-    const data: Record<string, any> = {};
+    const data: Record<string, string | null> = {};
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (key) {

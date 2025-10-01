@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
-  BookOpen,
   FileText,
   CheckSquare,
   Users,
@@ -41,9 +41,11 @@ export function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <div className="p-2 rounded-lg">
-              <img
+              <Image
                 src="/logo.png"
                 alt="ProdigySpace Logo"
+                width={24}
+                height={24}
                 className="h-6 w-6"
               />
             </div>

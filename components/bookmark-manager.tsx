@@ -58,7 +58,12 @@ export function BookmarkManager() {
     }
   };
 
-  const handleEdit = (bookmark: any) => {
+  const handleEdit = (bookmark: {
+    id: string;
+    title: string;
+    url: string;
+    category: string;
+  }) => {
     setFormData({
       title: bookmark.title,
       url: bookmark.url,

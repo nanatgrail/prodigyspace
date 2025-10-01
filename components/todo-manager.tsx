@@ -1,12 +1,24 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Dialog,
   DialogContent,
@@ -14,14 +26,22 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Badge } from "@/components/ui/badge"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { useTodos } from "@/hooks/use-todos"
-import type { TodoCategory, TodoPriority } from "@/types/todo"
-import { Plus, CheckSquare, Clock, AlertTriangle, Calendar, Trash2, Download } from "lucide-react"
-import { exportToCSV } from "@/lib/csv-export"
+} from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useTodos } from "@/hooks/use-todos";
+import type { TodoCategory, TodoPriority } from "@/types/todo";
+import {
+  Plus,
+  CheckSquare,
+  Clock,
+  AlertTriangle,
+  Calendar,
+  Trash2,
+  Download,
+} from "lucide-react";
+import { exportToCSV } from "@/lib/csv-export";
 
 const categoryLabels: Record<TodoCategory, string> = {
   study: "Study",
@@ -29,40 +49,47 @@ const categoryLabels: Record<TodoCategory, string> = {
   assignments: "Assignments",
   projects: "Projects",
   other: "Other",
-}
+};
 
 const priorityLabels: Record<TodoPriority, string> = {
   low: "Low",
   medium: "Medium",
   high: "High",
-}
+};
 
 const priorityColors: Record<TodoPriority, string> = {
   low: "bg-green-100 text-green-800",
   medium: "bg-yellow-100 text-yellow-800",
   high: "bg-red-100 text-red-800",
-}
+};
 
 export function TodoManager() {
-  const { todos, loading, addTodo, updateTodo, deleteTodo, toggleTodo, getTodoStats, getOverdueTodos, getTodayTodos } =
-    useTodos()
+  const {
+    todos,
+    loading,
+    addTodo,
+    deleteTodo,
+    toggleTodo,
+    getTodoStats,
+    getOverdueTodos,
+    getTodayTodos,
+  } = useTodos();
 
-  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
-  const [editingTodo, setEditingTodo] = useState<string | null>(null)
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [newTodo, setNewTodo] = useState({
     title: "",
     description: "",
     category: "" as TodoCategory,
     priority: "medium" as TodoPriority,
     dueDate: "",
-  })
+  });
 
-  const stats = getTodoStats()
-  const overdueTodos = getOverdueTodos()
-  const todayTodos = getTodayTodos()
+  const stats = getTodoStats();
+  const overdueTodos = getOverdueTodos();
+  const todayTodos = getTodayTodos();
 
   const handleAddTodo = () => {
-    if (!newTodo.title || !newTodo.category) return
+    if (!newTodo.title || !newTodo.category) return;
 
     addTodo({
       title: newTodo.title,
@@ -71,7 +98,7 @@ export function TodoManager() {
       priority: newTodo.priority,
       dueDate: newTodo.dueDate || undefined,
       completed: false,
-    })
+    });
 
     setNewTodo({
       title: "",
@@ -79,9 +106,9 @@ export function TodoManager() {
       category: "" as TodoCategory,
       priority: "medium",
       dueDate: "",
-    })
-    setIsAddDialogOpen(false)
-  }
+    });
+    setIsAddDialogOpen(false);
+  };
 
   const handleExportCSV = () => {
     const exportData = todos.map((todo) => ({
@@ -92,26 +119,28 @@ export function TodoManager() {
       "Due Date": todo.dueDate || "",
       Completed: todo.completed ? "Yes" : "No",
       "Created At": new Date(todo.createdAt).toLocaleDateString(),
-    }))
-    exportToCSV(exportData, `todos_${new Date().toISOString().split("T")[0]}`)
-  }
+    }));
+    exportToCSV(exportData, `todos_${new Date().toISOString().split("T")[0]}`);
+  };
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
       year: "numeric",
-    })
-  }
+    });
+  };
 
   const isOverdue = (dueDate?: string) => {
-    if (!dueDate) return false
-    const today = new Date().toISOString().split("T")[0]
-    return dueDate < today
-  }
+    if (!dueDate) return false;
+    const today = new Date().toISOString().split("T")[0];
+    return dueDate < today;
+  };
 
   if (loading) {
-    return <div className="flex items-center justify-center p-8">Loading...</div>
+    return (
+      <div className="flex items-center justify-center p-8">Loading...</div>
+    );
   }
 
   return (
@@ -120,7 +149,9 @@ export function TodoManager() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-foreground">Todo Manager</h2>
-          <p className="text-muted-foreground">Organize your tasks and stay productive</p>
+          <p className="text-muted-foreground">
+            Organize your tasks and stay productive
+          </p>
         </div>
         <div className="flex gap-2">
           <Button onClick={handleExportCSV} variant="outline" size="sm">
@@ -137,7 +168,9 @@ export function TodoManager() {
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>Add New Task</DialogTitle>
-                <DialogDescription>Create a new task to stay organized</DialogDescription>
+                <DialogDescription>
+                  Create a new task to stay organized
+                </DialogDescription>
               </DialogHeader>
               <div className="space-y-4">
                 <div>
@@ -146,7 +179,9 @@ export function TodoManager() {
                     id="title"
                     placeholder="What needs to be done?"
                     value={newTodo.title}
-                    onChange={(e) => setNewTodo((prev) => ({ ...prev, title: e.target.value }))}
+                    onChange={(e) =>
+                      setNewTodo((prev) => ({ ...prev, title: e.target.value }))
+                    }
                   />
                 </div>
                 <div>
@@ -155,7 +190,12 @@ export function TodoManager() {
                     id="description"
                     placeholder="Add more details..."
                     value={newTodo.description}
-                    onChange={(e) => setNewTodo((prev) => ({ ...prev, description: e.target.value }))}
+                    onChange={(e) =>
+                      setNewTodo((prev) => ({
+                        ...prev,
+                        description: e.target.value,
+                      }))
+                    }
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -163,7 +203,9 @@ export function TodoManager() {
                     <Label htmlFor="category">Category</Label>
                     <Select
                       value={newTodo.category}
-                      onValueChange={(value: TodoCategory) => setNewTodo((prev) => ({ ...prev, category: value }))}
+                      onValueChange={(value: TodoCategory) =>
+                        setNewTodo((prev) => ({ ...prev, category: value }))
+                      }
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select category" />
@@ -181,7 +223,9 @@ export function TodoManager() {
                     <Label htmlFor="priority">Priority</Label>
                     <Select
                       value={newTodo.priority}
-                      onValueChange={(value: TodoPriority) => setNewTodo((prev) => ({ ...prev, priority: value }))}
+                      onValueChange={(value: TodoPriority) =>
+                        setNewTodo((prev) => ({ ...prev, priority: value }))
+                      }
                     >
                       <SelectTrigger>
                         <SelectValue />
@@ -202,7 +246,12 @@ export function TodoManager() {
                     id="dueDate"
                     type="date"
                     value={newTodo.dueDate}
-                    onChange={(e) => setNewTodo((prev) => ({ ...prev, dueDate: e.target.value }))}
+                    onChange={(e) =>
+                      setNewTodo((prev) => ({
+                        ...prev,
+                        dueDate: e.target.value,
+                      }))
+                    }
                   />
                 </div>
                 <Button onClick={handleAddTodo} className="w-full">
@@ -223,7 +272,9 @@ export function TodoManager() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats.total}</div>
-            <p className="text-xs text-muted-foreground">{stats.completed} completed</p>
+            <p className="text-xs text-muted-foreground">
+              {stats.completed} completed
+            </p>
           </CardContent>
         </Card>
         <Card>
@@ -242,7 +293,9 @@ export function TodoManager() {
             <AlertTriangle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-destructive">{stats.overdue}</div>
+            <div className="text-2xl font-bold text-destructive">
+              {stats.overdue}
+            </div>
             <p className="text-xs text-muted-foreground">Need attention</p>
           </CardContent>
         </Card>
@@ -282,26 +335,47 @@ export function TodoManager() {
                   {todos.map((todo) => (
                     <div
                       key={todo.id}
-                      className={`flex items-center gap-3 p-3 border rounded-lg ${todo.completed ? "bg-muted/50" : ""}`}
+                      className={`flex items-center gap-3 p-3 border rounded-lg ${
+                        todo.completed ? "bg-muted/50" : ""
+                      }`}
                     >
-                      <Checkbox checked={todo.completed} onCheckedChange={() => toggleTodo(todo.id)} />
+                      <Checkbox
+                        checked={todo.completed}
+                        onCheckedChange={() => toggleTodo(todo.id)}
+                      />
                       <div className="flex-1 min-w-0">
-                        <div className={`font-medium ${todo.completed ? "line-through text-muted-foreground" : ""}`}>
+                        <div
+                          className={`font-medium ${
+                            todo.completed
+                              ? "line-through text-muted-foreground"
+                              : ""
+                          }`}
+                        >
                           {todo.title}
                         </div>
                         {todo.description && (
-                          <div className="text-sm text-muted-foreground mt-1">{todo.description}</div>
+                          <div className="text-sm text-muted-foreground mt-1">
+                            {todo.description}
+                          </div>
                         )}
                         <div className="flex items-center gap-2 mt-2">
                           <Badge variant="outline" className="text-xs">
                             {categoryLabels[todo.category]}
                           </Badge>
-                          <Badge className={`text-xs ${priorityColors[todo.priority]}`}>
+                          <Badge
+                            className={`text-xs ${
+                              priorityColors[todo.priority]
+                            }`}
+                          >
                             {priorityLabels[todo.priority]}
                           </Badge>
                           {todo.dueDate && (
                             <Badge
-                              variant={isOverdue(todo.dueDate) && !todo.completed ? "destructive" : "secondary"}
+                              variant={
+                                isOverdue(todo.dueDate) && !todo.completed
+                                  ? "destructive"
+                                  : "secondary"
+                              }
                               className="text-xs"
                             >
                               {formatDate(todo.dueDate)}
@@ -330,8 +404,8 @@ export function TodoManager() {
         <TabsContent value="today" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Today's Tasks</CardTitle>
-              <CardDescription>Focus on what's due today</CardDescription>
+              <CardTitle>Today&apos;s Tasks</CardTitle>
+              <CardDescription>Focus on what&apos;s due today</CardDescription>
             </CardHeader>
             <CardContent>
               {todayTodos.length === 0 ? (
@@ -343,21 +417,38 @@ export function TodoManager() {
                   {todayTodos.map((todo) => (
                     <div
                       key={todo.id}
-                      className={`flex items-center gap-3 p-3 border rounded-lg ${todo.completed ? "bg-muted/50" : ""}`}
+                      className={`flex items-center gap-3 p-3 border rounded-lg ${
+                        todo.completed ? "bg-muted/50" : ""
+                      }`}
                     >
-                      <Checkbox checked={todo.completed} onCheckedChange={() => toggleTodo(todo.id)} />
+                      <Checkbox
+                        checked={todo.completed}
+                        onCheckedChange={() => toggleTodo(todo.id)}
+                      />
                       <div className="flex-1 min-w-0">
-                        <div className={`font-medium ${todo.completed ? "line-through text-muted-foreground" : ""}`}>
+                        <div
+                          className={`font-medium ${
+                            todo.completed
+                              ? "line-through text-muted-foreground"
+                              : ""
+                          }`}
+                        >
                           {todo.title}
                         </div>
                         {todo.description && (
-                          <div className="text-sm text-muted-foreground mt-1">{todo.description}</div>
+                          <div className="text-sm text-muted-foreground mt-1">
+                            {todo.description}
+                          </div>
                         )}
                         <div className="flex items-center gap-2 mt-2">
                           <Badge variant="outline" className="text-xs">
                             {categoryLabels[todo.category]}
                           </Badge>
-                          <Badge className={`text-xs ${priorityColors[todo.priority]}`}>
+                          <Badge
+                            className={`text-xs ${
+                              priorityColors[todo.priority]
+                            }`}
+                          >
                             {priorityLabels[todo.priority]}
                           </Badge>
                         </div>
@@ -382,11 +473,15 @@ export function TodoManager() {
           <Card>
             <CardHeader>
               <CardTitle>Overdue Tasks</CardTitle>
-              <CardDescription>Tasks that need immediate attention</CardDescription>
+              <CardDescription>
+                Tasks that need immediate attention
+              </CardDescription>
             </CardHeader>
             <CardContent>
               {overdueTodos.length === 0 ? (
-                <div className="text-center py-8 text-muted-foreground">No overdue tasks. You're doing great!</div>
+                <div className="text-center py-8 text-muted-foreground">
+                  No overdue tasks. You&apos;re doing great!
+                </div>
               ) : (
                 <div className="space-y-2">
                   {overdueTodos.map((todo) => (
@@ -394,17 +489,26 @@ export function TodoManager() {
                       key={todo.id}
                       className="flex items-center gap-3 p-3 border border-destructive/20 rounded-lg bg-destructive/5"
                     >
-                      <Checkbox checked={todo.completed} onCheckedChange={() => toggleTodo(todo.id)} />
+                      <Checkbox
+                        checked={todo.completed}
+                        onCheckedChange={() => toggleTodo(todo.id)}
+                      />
                       <div className="flex-1 min-w-0">
                         <div className="font-medium">{todo.title}</div>
                         {todo.description && (
-                          <div className="text-sm text-muted-foreground mt-1">{todo.description}</div>
+                          <div className="text-sm text-muted-foreground mt-1">
+                            {todo.description}
+                          </div>
                         )}
                         <div className="flex items-center gap-2 mt-2">
                           <Badge variant="outline" className="text-xs">
                             {categoryLabels[todo.category]}
                           </Badge>
-                          <Badge className={`text-xs ${priorityColors[todo.priority]}`}>
+                          <Badge
+                            className={`text-xs ${
+                              priorityColors[todo.priority]
+                            }`}
+                          >
                             {priorityLabels[todo.priority]}
                           </Badge>
                           <Badge variant="destructive" className="text-xs">
@@ -432,7 +536,7 @@ export function TodoManager() {
           <Card>
             <CardHeader>
               <CardTitle>Completed Tasks</CardTitle>
-              <CardDescription>Tasks you've finished</CardDescription>
+              <CardDescription>Tasks you&apos;ve finished</CardDescription>
             </CardHeader>
             <CardContent>
               {todos.filter((todo) => todo.completed).length === 0 ? (
@@ -444,18 +548,32 @@ export function TodoManager() {
                   {todos
                     .filter((todo) => todo.completed)
                     .map((todo) => (
-                      <div key={todo.id} className="flex items-center gap-3 p-3 border rounded-lg bg-muted/50">
-                        <Checkbox checked={true} onCheckedChange={() => toggleTodo(todo.id)} />
+                      <div
+                        key={todo.id}
+                        className="flex items-center gap-3 p-3 border rounded-lg bg-muted/50"
+                      >
+                        <Checkbox
+                          checked={true}
+                          onCheckedChange={() => toggleTodo(todo.id)}
+                        />
                         <div className="flex-1 min-w-0">
-                          <div className="font-medium line-through text-muted-foreground">{todo.title}</div>
+                          <div className="font-medium line-through text-muted-foreground">
+                            {todo.title}
+                          </div>
                           {todo.description && (
-                            <div className="text-sm text-muted-foreground mt-1">{todo.description}</div>
+                            <div className="text-sm text-muted-foreground mt-1">
+                              {todo.description}
+                            </div>
                           )}
                           <div className="flex items-center gap-2 mt-2">
                             <Badge variant="outline" className="text-xs">
                               {categoryLabels[todo.category]}
                             </Badge>
-                            <Badge className={`text-xs ${priorityColors[todo.priority]}`}>
+                            <Badge
+                              className={`text-xs ${
+                                priorityColors[todo.priority]
+                              }`}
+                            >
                               {priorityLabels[todo.priority]}
                             </Badge>
                             {todo.dueDate && (
@@ -482,5 +600,5 @@ export function TodoManager() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

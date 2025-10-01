@@ -1,3 +1,5 @@
+"use client";
+
 import { WaterTracker } from "@/components/water-tracker";
 import { PomodoroTimer } from "@/components/pomodoro-timer";
 import { BookmarkManager } from "@/components/bookmark-manager";

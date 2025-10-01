@@ -1,21 +1,31 @@
-"use client"
+"use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { TaskManager } from "@/components/task-manager"
-import { StudyPlanner } from "@/components/study-planner"
-import { useTasks } from "@/hooks/use-tasks"
-import { CheckSquare, Calendar, BookOpen, GraduationCap } from "lucide-react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { TaskManager } from "@/components/task-manager";
+import { StudyPlanner } from "@/components/study-planner";
+import { useTasks } from "@/hooks/use-tasks";
+import { CheckSquare, Calendar, BookOpen, GraduationCap } from "lucide-react";
 
 export default function TasksPage() {
-  const { tasks, studySessions, assignments, addTask, updateTask, deleteTask, addStudySession, addAssignment } =
-    useTasks()
+  const {
+    tasks,
+    studySessions,
+    assignments,
+    addTask,
+    updateTask,
+    deleteTask,
+    addStudySession,
+  } = useTasks();
 
   return (
     <div className="container mx-auto p-6">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold mb-2">Task Management & Study Planner</h1>
+        <h1 className="text-3xl font-bold mb-2">
+          Task Management & Study Planner
+        </h1>
         <p className="text-muted-foreground">
-          Organize your assignments, plan study sessions, and track your academic progress.
+          Organize your assignments, plan study sessions, and track your
+          academic progress.
         </p>
       </div>
 
@@ -40,18 +50,29 @@ export default function TasksPage() {
         </TabsList>
 
         <TabsContent value="tasks">
-          <TaskManager tasks={tasks} onAddTask={addTask} onUpdateTask={updateTask} onDeleteTask={deleteTask} />
+          <TaskManager
+            tasks={tasks}
+            onAddTask={addTask}
+            onUpdateTask={updateTask}
+            onDeleteTask={deleteTask}
+          />
         </TabsContent>
 
         <TabsContent value="planner">
-          <StudyPlanner studySessions={studySessions} tasks={tasks} onAddSession={addStudySession} />
+          <StudyPlanner
+            studySessions={studySessions}
+            tasks={tasks}
+            onAddSession={addStudySession}
+          />
         </TabsContent>
 
         <TabsContent value="assignments">
           <div className="text-center py-12">
             <GraduationCap className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
             <h3 className="text-lg font-medium mb-2">Assignment Tracker</h3>
-            <p className="text-muted-foreground">Track your assignments, deadlines, and grades.</p>
+            <p className="text-muted-foreground">
+              Track your assignments, deadlines, and grades.
+            </p>
           </div>
         </TabsContent>
 
@@ -59,10 +80,12 @@ export default function TasksPage() {
           <div className="text-center py-12">
             <BookOpen className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
             <h3 className="text-lg font-medium mb-2">Study Sessions</h3>
-            <p className="text-muted-foreground">Review your study session history and analytics.</p>
+            <p className="text-muted-foreground">
+              Review your study session history and analytics.
+            </p>
           </div>
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

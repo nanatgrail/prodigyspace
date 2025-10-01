@@ -81,14 +81,8 @@ const formatINR = (amount: number): string => {
 };
 
 export function ExpenseTracker() {
-  const {
-    expenses,
-    budgets,
-    loading,
-    addExpense,
-    deleteExpense,
-    updateBudget,
-  } = useExpenses();
+  const { expenses, budgets, loading, addExpense, deleteExpense } =
+    useExpenses();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [newExpense, setNewExpense] = useState({
     amount: "",
@@ -136,7 +130,7 @@ export function ExpenseTracker() {
   };
 
   const pieChartData = Object.entries(stats.categoryBreakdown)
-    .filter(([_, amount]) => amount > 0)
+    .filter(([, amount]) => amount > 0)
     .map(([category, amount]) => ({
       name: categoryLabels[category as ExpenseCategory],
       value: amount,

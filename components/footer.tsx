@@ -1,12 +1,6 @@
 import Link from "next/link";
-import {
-  GraduationCap,
-  Github,
-  Twitter,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import Image from "next/image";
+import { Github, Twitter, Mail, Phone, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -17,9 +11,11 @@ export function Footer() {
           <div className="space-y-3">
             <div className="flex items-center space-x-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg">
-                <img
+                <Image
                   src="/logo.png"
                   alt="ProdigySpace Logo"
+                  width={24}
+                  height={24}
                   className="h-6 w-6"
                 />
               </div>

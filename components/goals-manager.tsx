@@ -49,7 +49,7 @@ export function GoalsManager({
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState<WellbeingGoal["category"]>("mood");
   const [target, setTarget] = useState(10);
-  const [current, setCurrent] = useState(0);
+
   const [unit, setUnit] = useState("sessions");
   const [deadline, setDeadline] = useState<Date | undefined>(
     new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
