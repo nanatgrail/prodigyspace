@@ -1,13 +1,14 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Menu, X, GraduationCap } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X, GraduationCap } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
+import styles from "@/styles/header.css";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -15,38 +16,47 @@ export function Header() {
     { href: "/todos", label: "Tasks" },
     { href: "/notes", label: "Notes" },
     { href: "/about", label: "About" },
-  ]
+  ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between px-4">
+    <header className={styles.header}>
+      <div className={styles.container}>
         {/* Logo and Title */}
-        <Link href="/" className="flex items-center space-x-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-            <GraduationCap className="h-5 w-5 text-primary-foreground" />
+        <Link href="/" className={styles.logoContainer}>
+          <div className={styles.logoIcon}>
+            <GraduationCap className={styles.menuButtonIcon} />
           </div>
-          <span className="text-xl font-bold">prodigyspace</span>
+          <span className={styles.logoText}>prodigyspace</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className={styles.desktopNav}>
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className="text-sm font-medium transition-colors hover:text-primary">
+            <Link key={item.href} href={item.href} className={styles.navLink}>
               {item.label}
             </Link>
           ))}
         </nav>
 
         {/* Desktop Theme Toggle */}
-        <div className="hidden md:flex">
+        <div className={styles.desktopThemeToggle}>
           <ThemeToggle />
         </div>
 
         {/* Mobile Menu Button and Theme Toggle */}
-        <div className="flex items-center space-x-2 md:hidden">
+        <div className={styles.mobileControls}>
           <ThemeToggle />
-          <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} className="h-9 w-9">
-            {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={styles.menuButton}
+          >
+            {isMenuOpen ? (
+              <X className={styles.menuButtonIcon} />
+            ) : (
+              <Menu className={styles.menuButtonIcon} />
+            )}
             <span className="sr-only">Toggle menu</span>
           </Button>
         </div>
@@ -54,13 +64,13 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="border-t bg-background md:hidden">
-          <nav className="container flex flex-col space-y-2 px-4 py-4">
+        <div className={styles.mobileNav}>
+          <nav className={styles.mobileNavContainer}>
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium transition-colors hover:text-primary py-2"
+                className={styles.mobileNavLink}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
@@ -70,5 +80,5 @@ export function Header() {
         </div>
       )}
     </header>
-  )
+  );
 }
