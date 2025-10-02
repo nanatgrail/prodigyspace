@@ -1,123 +1,88 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Github, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import styles from "@styles/footer.css";
 
 export function Footer() {
   return (
-    <footer className="bg-black text-white">
-      <div className="container px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <div className={styles.grid}>
           {/* Brand - Left Side */}
-          <div className="space-y-3">
-            <div className="flex items-center space-x-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg">
+          <div className={styles["brand-section"]}>
+            <div className={styles["logo-container"]}>
+              <div className={styles.logo}>
                 <Image
                   src="/logo.png"
                   alt="ProdigySpace Logo"
                   width={24}
                   height={24}
-                  className="h-6 w-6"
+                  className={styles.logo}
                 />
               </div>
-              <span className="text-lg font-bold">prodigyspace</span>
+              <span className={styles["brand-name"]}>prodigyspace</span>
             </div>
-            <p className="text-sm text-gray-300">
+            <p className={styles.description}>
               Your all-in-one productivity companion for student life. Stay
               organized, focused, and motivated.
             </p>
           </div>
 
           {/* Quick Links - Center */}
-          <div className="space-y-3">
-            <h3 className="text-sm font-semibold">Quick Links</h3>
-            <ul className="space-y-2 text-sm text-gray-300">
+          <div className={styles["links-section"]}>
+            <h3>Quick Links</h3>
+            <ul className={styles["links-list"]}>
               <li>
-                <Link href="/" className="hover:text-white transition-colors">
-                  Home
-                </Link>
+                <Link href="/" className={styles.link}>Home</Link>
               </li>
               <li>
-                <Link
-                  href="/expenses"
-                  className="hover:text-white transition-colors"
-                >
-                  Expense Tracker
-                </Link>
+                <Link href="/expenses" className={styles.link}>Expense Tracker</Link>
               </li>
               <li>
-                <Link
-                  href="/todos"
-                  className="hover:text-white transition-colors"
-                >
-                  Task Manager
-                </Link>
+                <Link href="/todos" className={styles.link}>Task Manager</Link>
               </li>
               <li>
-                <Link
-                  href="/notes"
-                  className="hover:text-white transition-colors"
-                >
-                  Sticky Notes
-                </Link>
+                <Link href="/notes" className={styles.link}>Sticky Notes</Link>
               </li>
               <li>
-                <Link
-                  href="/tasks"
-                  className="hover:text-white transition-colors"
-                >
-                  Study Planner
-                </Link>
+                <Link href="/tasks" className={styles.link}>Study Planner</Link>
               </li>
               <li>
-                <Link
-                  href="/wellbeing"
-                  className="hover:text-white transition-colors"
-                >
-                  Wellbeing Tracker
-                </Link>
+                <Link href="/wellbeing" className={styles.link}>Wellbeing Tracker</Link>
               </li>
             </ul>
           </div>
 
           {/* Contact & Social - Right Side */}
-          <div className="space-y-3">
-            <h3 className="text-sm font-semibold">Contact Us</h3>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li className="flex items-start space-x-2">
-                <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
+          <div className={styles["contact-section"]}>
+            <h3>Contact Us</h3>
+            <ul className={styles["contact-list"]}>
+              <li className={styles["contact-item"]}>
+                <Mail className={styles["contact-icon"]} />
                 <span>1046prt@gmail.com</span>
               </li>
-              <li className="flex items-start space-x-2">
-                <Phone className="h-4 w-4 mt-0.5 flex-shrink-0" />
+              <li className={styles["contact-item"]}>
+                <Phone className={styles["contact-icon"]} />
                 <span>+91-9508015377</span>
               </li>
-              <li className="flex items-start space-x-2">
-                <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+              <li className={styles["contact-item"]}>
+                <MapPin className={styles["contact-icon"]} />
                 <span>Student Life Building, University Ave</span>
               </li>
             </ul>
-            <div className="pt-2">
-              <h3 className="text-sm font-semibold">Follow Us</h3>
-              <div className="flex space-x-4 pt-2">
-                <Link
-                  href="https://github.com/1046prt/"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  <Github className="h-5 w-5" />
+            <div>
+              <h3>Follow Us</h3>
+              <div className={styles["social-links"]}>
+                <Link href="https://github.com/1046prt/" className={styles["social-link"]}>
+                  <Github />
                   <span className="sr-only">GitHub</span>
                 </Link>
-                <Link
-                  href="https://x.com/1046prt/"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  <Twitter className="h-5 w-5" />
+                <Link href="https://x.com/1046prt/" className={styles["social-link"]}>
+                  <Twitter />
                   <span className="sr-only">Twitter</span>
                 </Link>
-                <Link
-                  href="mailto:1046prt@gmail.com"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  <Mail className="h-5 w-5" />
+                <Link href="mailto:1046prt@gmail.com" className={styles["social-link"]}>
+                  <Mail />
                   <span className="sr-only">Email</span>
                 </Link>
               </div>
@@ -125,7 +90,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
+        <div className={styles.copyright}>
           <p>&copy; 2025 prodigyspace. All rights reserved.</p>
         </div>
       </div>

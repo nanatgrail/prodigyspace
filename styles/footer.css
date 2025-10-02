@@ -1,0 +1,106 @@
+.footer {
+  background-color: #000;
+  color: #fff;
+}
+
+.container {
+  padding: 2rem 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.brand-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.brand-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: #d1d5db;
+}
+
+.links-section h3,
+.contact-section h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.links-list,
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #d1d5db;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.link,
+.social-link {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link:hover,
+.social-link:hover {
+  color: #fff;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.contact-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  padding-top: 0.5rem;
+}
+
+.copyright {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #1f2937;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
