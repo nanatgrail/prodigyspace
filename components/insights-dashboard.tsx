@@ -19,6 +19,7 @@ import {
 import { TrendingUp, Calendar, Activity, Brain, Heart } from "lucide-react";
 import { format, subDays, subWeeks, subMonths } from "date-fns";
 import type { MoodEntry, MeditationSession } from "@/types/wellbeing";
+import styles from "@styles/insight-dashboard.css";
 
 interface InsightsDashboardProps {
   moodEntries: MoodEntry[];
@@ -148,25 +149,25 @@ export function InsightsDashboard({
       : 0;
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Well-being Insights</h2>
-        <div className="flex gap-2">
+    <div className={styles["insight-container"]}>
+      <div className={styles["header-container"]}>
+        <h2 className={styles["title"]}>Well-being Insights</h2>
+        <div className={styles["time-range-buttons"]}>
           <button
-            className={`px-3 py-1 rounded-md text-sm ${
+            className={`${styles["time-button"]} ${
               timeRange === "week"
-                ? "bg-primary text-primary-foreground"
-                : "bg-muted hover:bg-muted/80"
+                ? styles["time-button-active"]
+                : styles["time-button-inactive"]
             }`}
             onClick={() => setTimeRange("week")}
           >
             Week
           </button>
           <button
-            className={`px-3 py-1 rounded-md text-sm ${
+            className={`${styles["time-button"]} ${
               timeRange === "month"
-                ? "bg-primary text-primary-foreground"
-                : "bg-muted hover:bg-muted/80"
+                ? styles["time-button-active"]
+                : styles["time-button-inactive"]
             }`}
             onClick={() => setTimeRange("month")}
           >
@@ -176,58 +177,68 @@ export function InsightsDashboard({
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className={styles["stats-grid"]}>
         <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-100 rounded-full">
-                <Heart className="h-5 w-5 text-blue-600" />
+          <CardContent className={styles["stat-card-content"]}>
+            <div className={styles["stat-content"]}>
+              <div
+                className={`${styles["icon-container"]} ${styles["mood-icon-bg"]}`}
+              >
+                <Heart className={`${styles["mood-icon"]}`} />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Mood Entries</p>
-                <p className="text-2xl font-bold">{totalMoodEntries}</p>
+                <p className={styles["stat-text"]}>Mood Entries</p>
+                <p className={styles["stat-value"]}>{totalMoodEntries}</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-green-100 rounded-full">
-                <Activity className="h-5 w-5 text-green-600" />
+          <CardContent className={styles["stat-card-content"]}>
+            <div className={styles["stat-content"]}>
+              <div
+                className={`${styles["icon-container"]} ${styles["activity-icon-bg"]}`}
+              >
+                <Activity className={`${styles["activity-icon"]}`} />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Avg Mood</p>
-                <p className="text-2xl font-bold">{averageMood}/5</p>
+                <p className={styles["stat-text"]}>Avg Mood</p>
+                <p className={styles["stat-value"]}>{averageMood}/5</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-purple-100 rounded-full">
-                <Brain className="h-5 w-5 text-purple-600" />
+          <CardContent className={styles["stat-card-content"]}>
+            <div className={styles["stat-content"]}>
+              <div
+                className={`${styles["icon-container"]} ${styles["brain-icon-bg"]}`}
+              >
+                <Brain className={`${styles["brain-icon"]}`} />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Meditation</p>
-                <p className="text-2xl font-bold">{totalMeditationMinutes}m</p>
+                <p className={styles["stat-text"]}>Meditation</p>
+                <p className={styles["stat-value"]}>
+                  {totalMeditationMinutes}m
+                </p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-orange-100 rounded-full">
-                <TrendingUp className="h-5 w-5 text-orange-600" />
+          <CardContent className={styles["stat-card-content"]}>
+            <div className={styles["stat-content"]}>
+              <div
+                className={`${styles["icon-container"]} ${styles["trend-icon-bg"]}`}
+              >
+                <TrendingUp className={`${styles["trend-icon"]}`} />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Avg Session</p>
-                <p className="text-2xl font-bold">{avgMeditationDuration}m</p>
+                <p className={styles["stat-text"]}>Avg Session</p>
+                <p className={styles["stat-value"]}>{avgMeditationDuration}m</p>
               </div>
             </div>
           </CardContent>
@@ -235,13 +246,13 @@ export function InsightsDashboard({
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className={styles["charts-grid"]}>
         <Card>
-          <CardHeader>
+          <CardHeader className={styles["chart-header"]}>
             <CardTitle>Mood Trend</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="h-80">
+          <CardContent className={styles["chart-content"]}>
+            <div className={styles["chart-wrapper"]}>
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={moodData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -262,11 +273,11 @@ export function InsightsDashboard({
         </Card>
 
         <Card>
-          <CardHeader>
+          <CardHeader className={styles["chart-header"]}>
             <CardTitle>Meditation Minutes</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="h-80">
+          <CardContent className={styles["chart-content"]}>
+            <div className={styles["chart-wrapper"]}>
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={meditationData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -280,12 +291,12 @@ export function InsightsDashboard({
           </CardContent>
         </Card>
 
-        <Card className="lg:col-span-2">
-          <CardHeader>
+        <Card className={styles["full-width-chart"]}>
+          <CardHeader className={styles["chart-header"]}>
             <CardTitle>Meditation Types</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="h-80 flex items-center justify-center">
+          <CardContent className={styles["chart-content"]}>
+            <div className={styles["pie-chart-wrapper"]}>
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
