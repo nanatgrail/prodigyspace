@@ -1,0 +1,279 @@
+/* Meditation Center Styles */
+
+.meditationContainer {
+  padding: 1rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .statsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.statCard {
+  text-align: center;
+}
+
+.statCardContent {
+  padding: 1rem !important;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.statValueBlue {
+  color: #2563eb; /* blue-600 */
+}
+
+.statValueGreen {
+  color: #16a34a; /* green-600 */
+}
+
+.statValuePurple {
+  color: #9333ea; /* purple-600 */
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .mainGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.card {
+  /* Default card styles */
+}
+
+.cardHeader {
+  /* Card header styles */
+}
+
+.cardTitle {
+  /* Card title styles */
+}
+
+.cardContent {
+  /* Card content styles */
+}
+
+.exerciseActiveContainer {
+  text-align: center;
+}
+
+.exerciseActiveContainer > * + * {
+  margin-top: 1rem;
+}
+
+.exerciseName {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.timeDisplay {
+  font-size: 3rem;
+  font-weight: 700;
+  color: hsl(var(--primary));
+  margin: 1rem 0;
+}
+
+.phaseDisplay {
+  font-size: 1.125rem;
+  text-transform: capitalize;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 1rem;
+}
+
+.progressContainer {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.progressBar {
+  width: 100%;
+}
+
+.cycleInfo {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 1rem;
+}
+
+.controlsContainer {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.controlButton {
+  /* Button styles for controls */
+}
+
+.exercisesList > * + * {
+  margin-top: 0.75rem;
+}
+
+.exerciseCard {
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.exerciseCard:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.exerciseCardContent {
+  padding: 1rem !important;
+}
+
+.exerciseHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exerciseInfo {
+  flex: 1;
+}
+
+.exerciseDescription {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 0.5rem;
+}
+
+.exerciseBadges {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.exerciseBadge {
+  /* Badge styles */
+}
+
+.startButton {
+  /* Start button styles */
+}
+
+.buttonIcon {
+  height: 1rem;
+  width: 1rem;
+}
+
+.meditationActiveContainer {
+  text-align: center;
+}
+
+.meditationActiveContainer > * + * {
+  margin-top: 1rem;
+}
+
+.sessionInfo {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.meditationName {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.meditationsList > * + * {
+  margin-top: 1rem;
+}
+
+.meditationCard {
+  transition: box-shadow 0.2s ease;
+}
+
+.meditationCard:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.meditationCardContent {
+  padding: 1rem !important;
+}
+
+.meditationHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.meditationIcon {
+  height: 1.5rem;
+  width: 1.5rem;
+  color: hsl(var(--primary));
+  margin-top: 0.25rem;
+}
+
+.meditationInfo {
+  flex: 1;
+}
+
+.meditationDescription {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 1rem;
+}
+
+.durationButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.durationButton {
+  /* Duration button styles */
+}
+
+.completionContainer {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.completionIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.completionCheckIcon {
+  height: 3rem;
+  width: 3rem;
+  color: #16a34a; /* green-500 */
+  margin: 0 auto;
+}
+
+.completionTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: hsl(var(--primary));
+  margin-bottom: 0.5rem;
+}
+
+.completionMessage {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}

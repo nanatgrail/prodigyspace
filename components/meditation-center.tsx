@@ -15,6 +15,7 @@ import {
   Check,
 } from "lucide-react";
 import type { MeditationSession, BreathingExercise } from "@/types/wellbeing";
+import styles from "@styles/meditation-center.css";
 
 interface MeditationCenterProps {
   sessions: MeditationSession[];
@@ -256,95 +257,111 @@ export function MeditationCenter({
       : 0;
 
   return (
-    <div className="space-y-6">
+    <div className={styles.meditationContainer}>
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold text-blue-600">
+      <div className={styles.statsGrid}>
+        <Card className={styles.statCard}>
+          <CardContent className={styles.statCardContent}>
+            <div className={`${styles.statValue} ${styles.statValueBlue}`}>
               {totalSessions}
             </div>
-            <div className="text-sm text-muted-foreground">Sessions</div>
+            <div className={styles.statLabel}>Sessions</div>
           </CardContent>
         </Card>
-        <Card>
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold text-green-600">
+        <Card className={styles.statCard}>
+          <CardContent className={styles.statCardContent}>
+            <div className={`${styles.statValue} ${styles.statValueGreen}`}>
               {totalMinutes}
             </div>
-            <div className="text-sm text-muted-foreground">Minutes</div>
+            <div className={styles.statLabel}>Minutes</div>
           </CardContent>
         </Card>
-        <Card>
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold text-purple-600">
+        <Card className={styles.statCard}>
+          <CardContent className={styles.statCardContent}>
+            <div className={`${styles.statValue} ${styles.statValuePurple}`}>
               {averageRating.toFixed(1)}
             </div>
-            <div className="text-sm text-muted-foreground">Avg Rating</div>
+            <div className={styles.statLabel}>Avg Rating</div>
           </CardContent>
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className={styles.mainGrid}>
         {/* Breathing Exercises */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Breathing Exercises</CardTitle>
+        <Card className={styles.card}>
+          <CardHeader className={styles.cardHeader}>
+            <CardTitle className={styles.cardTitle}>
+              Breathing Exercises
+            </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className={styles.cardContent}>
             {activeExercise ? (
-              <div className="text-center space-y-4">
-                <h3 className="text-lg font-medium">{activeExercise.name}</h3>
-                <div className="text-6xl font-bold text-blue-600">
-                  {timeLeft}
+              <div className={styles.exerciseActiveContainer}>
+                <h3 className={styles.exerciseName}>{activeExercise.name}</h3>
+                <div className={styles.timeDisplay}>{timeLeft}</div>
+                <div className={styles.phaseDisplay}>{phase}</div>
+                <div className={styles.progressContainer}>
+                  <Progress
+                    value={((currentCycle + 1) / activeExercise.cycles) * 100}
+                    className={styles.progressBar}
+                  />
                 </div>
-                <div className="text-lg capitalize text-muted-foreground">
-                  {phase}
-                </div>
-                <Progress
-                  value={((currentCycle + 1) / activeExercise.cycles) * 100}
-                  className="w-full"
-                />
-                <div className="text-sm text-muted-foreground">
+                <div className={styles.cycleInfo}>
                   Cycle {currentCycle + 1} of {activeExercise.cycles}
                 </div>
-                <div className="flex gap-2 justify-center">
-                  <Button onClick={pauseExercise} variant="outline">
+                <div className={styles.controlsContainer}>
+                  <Button
+                    onClick={pauseExercise}
+                    variant="outline"
+                    className={styles.controlButton}
+                  >
                     {isRunning ? (
-                      <Pause className="h-4 w-4" />
+                      <Pause className={styles.buttonIcon} />
                     ) : (
-                      <Play className="h-4 w-4" />
+                      <Play className={styles.buttonIcon} />
                     )}
                   </Button>
-                  <Button onClick={resetExercise} variant="outline">
-                    <RotateCcw className="h-4 w-4" />
+                  <Button
+                    onClick={resetExercise}
+                    variant="outline"
+                    className={styles.controlButton}
+                  >
+                    <RotateCcw className={styles.buttonIcon} />
                   </Button>
                 </div>
               </div>
             ) : (
-              <div className="space-y-3">
+              <div className={styles.exercisesList}>
                 {breathingExercises.map((exercise) => (
-                  <Card
-                    key={exercise.id}
-                    className="cursor-pointer hover:shadow-md transition-shadow"
-                  >
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h4 className="font-medium">{exercise.name}</h4>
-                          <p className="text-sm text-muted-foreground">
+                  <Card key={exercise.id} className={styles.exerciseCard}>
+                    <CardContent className={styles.exerciseCardContent}>
+                      <div className={styles.exerciseHeader}>
+                        <div className={styles.exerciseInfo}>
+                          <h4 className={styles.exerciseName}>
+                            {exercise.name}
+                          </h4>
+                          <p className={styles.exerciseDescription}>
                             {exercise.description}
                           </p>
-                          <div className="flex gap-2 mt-2">
-                            <Badge variant="outline">
+                          <div className={styles.exerciseBadges}>
+                            <Badge
+                              variant="outline"
+                              className={styles.exerciseBadge}
+                            >
                               {exercise.inhale}s inhale
                             </Badge>
                             {exercise.hold > 0 && (
-                              <Badge variant="outline">
+                              <Badge
+                                variant="outline"
+                                className={styles.exerciseBadge}
+                              >
                                 {exercise.hold}s hold
                               </Badge>
                             )}
-                            <Badge variant="outline">
+                            <Badge
+                              variant="outline"
+                              className={styles.exerciseBadge}
+                            >
                               {exercise.exhale}s exhale
                             </Badge>
                           </div>
@@ -352,8 +369,9 @@ export function MeditationCenter({
                         <Button
                           onClick={() => startBreathingExercise(exercise)}
                           size="sm"
+                          className={styles.startButton}
                         >
-                          <Play className="h-4 w-4" />
+                          <Play className={styles.buttonIcon} />
                         </Button>
                       </div>
                     </CardContent>
@@ -365,78 +383,91 @@ export function MeditationCenter({
         </Card>
 
         {/* Guided Meditations */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Guided Meditations</CardTitle>
+        <Card className={styles.card}>
+          <CardHeader className={styles.cardHeader}>
+            <CardTitle className={styles.cardTitle}>
+              Guided Meditations
+            </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className={styles.cardContent}>
             {activeMeditation ? (
-              <div className="text-center space-y-4">
-                <h3 className="text-lg font-medium">
+              <div className={styles.meditationActiveContainer}>
+                <h3 className={styles.meditationName}>
                   {
                     guidedMeditations.find(
                       (m) => m.type === activeMeditation.type
                     )?.name
                   }
                 </h3>
-                <div className="text-6xl font-bold text-blue-600">
+                <div className={styles.timeDisplay}>
                   {formatTime(meditationTimeLeft)}
                 </div>
-                <div className="text-sm text-muted-foreground">
+                <div className={styles.sessionInfo}>
                   {activeMeditation.duration} minute session
                 </div>
-                <Progress
-                  value={
-                    ((activeMeditation.duration * 60 - meditationTimeLeft) /
-                      (activeMeditation.duration * 60)) *
-                    100
-                  }
-                  className="w-full"
-                />
-                <div className="flex gap-2 justify-center">
-                  <Button onClick={pauseMeditation} variant="outline">
+                <div className={styles.progressContainer}>
+                  <Progress
+                    value={
+                      ((activeMeditation.duration * 60 - meditationTimeLeft) /
+                        (activeMeditation.duration * 60)) *
+                      100
+                    }
+                    className={styles.progressBar}
+                  />
+                </div>
+                <div className={styles.controlsContainer}>
+                  <Button
+                    onClick={pauseMeditation}
+                    variant="outline"
+                    className={styles.controlButton}
+                  >
                     {isMeditationRunning ? (
-                      <Pause className="h-4 w-4" />
+                      <Pause className={styles.buttonIcon} />
                     ) : (
-                      <Play className="h-4 w-4" />
+                      <Play className={styles.buttonIcon} />
                     )}
                   </Button>
-                  <Button onClick={resetMeditation} variant="outline">
-                    <RotateCcw className="h-4 w-4" />
+                  <Button
+                    onClick={resetMeditation}
+                    variant="outline"
+                    className={styles.controlButton}
+                  >
+                    <RotateCcw className={styles.buttonIcon} />
                   </Button>
-                  <Button onClick={finishMeditation} variant="outline">
-                    <Check className="h-4 w-4" />
+                  <Button
+                    onClick={finishMeditation}
+                    variant="outline"
+                    className={styles.controlButton}
+                  >
+                    <Check className={styles.buttonIcon} />
                   </Button>
                 </div>
               </div>
             ) : showCompletion ? (
-              <div className="text-center py-8">
-                <div className="text-5xl mb-4">
-                  <Check className="h-12 w-12 text-green-500 mx-auto" />
+              <div className={styles.completionContainer}>
+                <div className={styles.completionIcon}>
+                  <Check className={styles.completionCheckIcon} />
                 </div>
-                <h3 className="text-xl font-bold text-green-600">
-                  Session Complete!
-                </h3>
-                <p className="text-muted-foreground">
+                <h3 className={styles.completionTitle}>Session Complete!</h3>
+                <p className={styles.completionMessage}>
                   Great job on your meditation practice
                 </p>
               </div>
             ) : (
-              <div className="space-y-4">
+              <div className={styles.meditationsList}>
                 {guidedMeditations.map((meditation) => (
-                  <Card
-                    key={meditation.type}
-                    className="hover:shadow-md transition-shadow"
-                  >
-                    <CardContent className="p-4">
-                      <div className="flex items-start gap-3">
-                        <meditation.icon className="h-6 w-6 text-blue-600 mt-1" />
-                        <div className="flex-1">
-                          <h4 className="font-medium">{meditation.name}</h4>
-                          <p className="text-sm text-muted-foreground mb-3">
+                  <Card key={meditation.type} className={styles.meditationCard}>
+                    <CardContent className={styles.meditationCardContent}>
+                      <div className={styles.meditationHeader}>
+                        <meditation.icon className={styles.meditationIcon} />
+                        <div className={styles.meditationInfo}>
+                          <h4 className={styles.meditationName}>
+                            {meditation.name}
+                          </h4>
+                          <p className={styles.meditationDescription}>
                             {meditation.description}
                           </p>
-                          <div className="flex flex-wrap gap-2">
+                          <div className={styles.durationButtons}>
                             {meditation.durations.map((duration) => (
                               <Button
                                 key={duration}
@@ -448,6 +479,7 @@ export function MeditationCenter({
                                     duration
                                   )
                                 }
+                                className={styles.durationButton}
                               >
                                 {duration} min
                               </Button>
