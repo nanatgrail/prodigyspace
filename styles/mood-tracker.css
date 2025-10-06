@@ -1,0 +1,142 @@
+/* Mood Tracker Component Styles */
+
+.moodTrackerContainer {
+  @apply space-y-6;
+}
+
+.moodGrid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+}
+
+.formSection {
+  @apply space-y-4;
+}
+
+.overviewContent {
+  /* Card content padding is handled by the UI component */
+}
+
+.overviewContainer {
+  @apply space-y-4;
+}
+
+.dateLabel,
+.moodLabel,
+.energyLabel,
+.stressLabel,
+.activitiesLabel,
+.notesLabel {
+  @apply text-sm font-medium mb-2 block;
+}
+
+.dateButton {
+  @apply w-full justify-start text-left font-normal bg-transparent;
+}
+
+.calendarIcon {
+  @apply mr-2 h-4 w-4;
+}
+
+.calendarPopover {
+  @apply w-auto p-0;
+}
+
+.moodButtons {
+  @apply flex gap-2;
+}
+
+.moodButton {
+  @apply flex-1 flex-col h-auto py-2;
+}
+
+.moodEmoji {
+  @apply text-lg;
+}
+
+.moodLabelSmall {
+  @apply text-xs;
+}
+
+.levelButtons {
+  @apply flex gap-1;
+}
+
+.levelButton {
+  @apply flex-1;
+}
+
+.activitiesContainer {
+  @apply flex flex-wrap gap-2;
+}
+
+.activityBadge {
+  @apply cursor-pointer;
+}
+
+.notesTextarea {
+  /* Styles handled by the UI component */
+}
+
+.submitButton {
+  @apply w-full;
+}
+
+.overviewHeader {
+  @apply flex items-center gap-2;
+}
+
+.trendIcon {
+  @apply h-5 w-5;
+}
+
+.averageMoodContainer {
+  @apply text-center;
+}
+
+.averageMoodEmoji {
+  @apply text-3xl mb-2;
+}
+
+.averageMoodText {
+  @apply text-sm text-muted-foreground;
+}
+
+.recentEntriesContainer {
+  /* Container styles */
+}
+
+.recentEntriesTitle {
+  @apply font-medium mb-2;
+}
+
+.noEntriesText {
+  @apply text-sm text-muted-foreground text-center py-4;
+}
+
+.entriesList {
+  @apply space-y-2;
+}
+
+.entryItem {
+  @apply flex items-center justify-between p-2 rounded border;
+}
+
+.entryInfo {
+  @apply flex items-center gap-2;
+}
+
+.entryEmoji {
+  @apply text-lg;
+}
+
+.entryDate {
+  @apply text-sm;
+}
+
+.entryBadges {
+  @apply flex gap-1 text-xs;
+}
+
+.entryBadge {
+  /* Badge styles are handled by the UI component */
+}
