@@ -1,0 +1,77 @@
+.noteEditorCard {
+  width: 100%;
+  max-width: 64rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pinButtonPinned {
+  color: #ca8a04; /* yellow-600 equivalent */
+}
+
+.pinButtonUnpinned {
+  color: #9ca3af; /* gray-400 equivalent */
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.formLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.textArea {
+  min-height: 300px;
+  resize: none;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tagBadge {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tagBadge:hover {
+  background-color: hsl(var(--destructive));
+  color: hsl(var(--destructive-foreground));
+}
+
+.tagInputContainer {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tagInput {
+  flex: 1;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding-top: 1rem;
+}

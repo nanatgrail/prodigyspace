@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Save, Tag, Pin, PinOff } from "lucide-react"
 import type { Note } from "@/types/notes"
+import styles from "@/styles/note-editor.css"
 
 interface NoteEditorProps {
   note?: Note
@@ -48,33 +49,32 @@ export function NoteEditor({ note, onSave, onCancel }: NoteEditorProps) {
   }
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
-      <CardHeader>
-        <CardTitle className="flex items-center justify-between">
+    <Card className={styles.noteEditorCard}>
+      <CardHeader className={styles.cardHeader}>
+        <CardTitle>
           <span>{note ? "Edit Note" : "New Note"}</span>
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setIsPinned(!isPinned)}
-            className={isPinned ? "text-yellow-600" : "text-gray-400"}
+            className={isPinned ? styles.pinButtonPinned : styles.pinButtonUnpinned}
           >
             {isPinned ? <Pin className="h-4 w-4" /> : <PinOff className="h-4 w-4" />}
           </Button>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <CardContent>
+        <div className={styles.formGrid}>
           <div>
-            <label className="text-sm font-medium mb-2 block">Title</label>
+            <label className={styles.formLabel}>Title</label>
             <Input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Enter note title..."
-              className="w-full"
             />
           </div>
           <div>
-            <label className="text-sm font-medium mb-2 block">Category</label>
+            <label className={styles.formLabel}>Category</label>
             <Select value={category} onValueChange={(value: Note["category"]) => setCategory(value)}>
               <SelectTrigger>
                 <SelectValue />
@@ -91,36 +91,36 @@ export function NoteEditor({ note, onSave, onCancel }: NoteEditorProps) {
         </div>
 
         <div>
-          <label className="text-sm font-medium mb-2 block">Content</label>
+          <label className={styles.formLabel}>Content</label>
           <Textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Write your note here..."
-            className="min-h-[300px] resize-none"
+            className={styles.textArea}
           />
         </div>
 
         <div>
-          <label className="text-sm font-medium mb-2 block">Tags</label>
-          <div className="flex flex-wrap gap-2 mb-2">
+          <label className={styles.formLabel}>Tags</label>
+          <div className={styles.tagsContainer}>
             {tags.map((tag) => (
               <Badge
                 key={tag}
                 variant="secondary"
-                className="cursor-pointer hover:bg-destructive hover:text-destructive-foreground"
+                className={styles.tagBadge}
                 onClick={() => handleRemoveTag(tag)}
               >
                 {tag} ×
               </Badge>
             ))}
           </div>
-          <div className="flex gap-2">
+          <div className={styles.tagInputContainer}>
             <Input
               value={newTag}
               onChange={(e) => setNewTag(e.target.value)}
               placeholder="Add a tag..."
               onKeyPress={(e) => e.key === "Enter" && handleAddTag()}
-              className="flex-1"
+              className={styles.tagInput}
             />
             <Button onClick={handleAddTag} variant="outline" size="sm">
               <Tag className="h-4 w-4" />
@@ -128,7 +128,7 @@ export function NoteEditor({ note, onSave, onCancel }: NoteEditorProps) {
           </div>
         </div>
 
-        <div className="flex justify-end gap-2 pt-4">
+        <div className={styles.buttonGroup}>
           <Button variant="outline" onClick={onCancel}>
             Cancel
           </Button>
